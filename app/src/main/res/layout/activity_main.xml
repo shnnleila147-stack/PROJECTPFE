@@ -36,7 +36,7 @@
         android:layout_height="55dp"
         android:hint="email or username"
         android:textColorHint="#555555"
-        android:background="@drawable/input_background"
+        android:background="@drawable/ic_launcher_background"
         android:paddingLeft="15dp"
         android:textColor="#FFFFFF"
         android:layout_marginTop="10dp"/>
@@ -49,7 +49,7 @@
         android:hint="password"
         android:inputType="textPassword"
         android:textColorHint="#555555"
-        android:background="@drawable/input_background"
+        android:background="@drawable/ic_launcher_background"
         android:paddingLeft="15dp"
         android:textColor="#FFFFFF"
         android:layout_marginTop="15dp"/>
