@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -20,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Corrected View Binding initialization
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -29,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         setupClickListeners();
     }
 
-    // إعداد القائمة المنسدلة للمستوى الدراسي
     private void setupGradeSpinner() {
         String[] grades = {
                 "Select your grade",
@@ -47,29 +53,30 @@ public class RegisterActivity extends AppCompatActivity {
         ) {
             @Override
             public boolean isEnabled(int position) {
-                // الخيار الأول "Select your grade" غير قابل للاختيار
+                // First item "Select your grade" is not selectable
                 return position != 0;
             }
 
+            @NonNull
             @Override
-            public android.view.View getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
-                android.view.View view = super.getView(position, convertView, parent);
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(position == 0 ?
-                        ContextCompat.getColor(RegisterActivity.this, R.color.gray_hint) :
-                        ContextCompat.getColor(RegisterActivity.this, R.color.white));
+                        ContextCompat.getColor(getContext(), R.color.gray_hint) :
+                        ContextCompat.getColor(getContext(), R.color.white));
                 tv.setTextSize(14);
                 return view;
             }
 
             @Override
-            public android.view.View getDropDownView(int position, android.view.View convertView, android.view.ViewGroup parent) {
-                android.view.View view = super.getDropDownView(position, convertView, parent);
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 tv.setTextColor(position == 0 ?
-                        ContextCompat.getColor(RegisterActivity.this, R.color.gray_hint) :
-                        ContextCompat.getColor(RegisterActivity.this, R.color.white));
-                tv.setBackgroundColor(ContextCompat.getColor(RegisterActivity.this, R.color.bg_card));
+                        ContextCompat.getColor(getContext(), R.color.gray_hint) :
+                        ContextCompat.getColor(getContext(), R.color.white));
+                tv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.bg_card));
                 tv.setPadding(40, 30, 40, 30);
                 tv.setTextSize(14);
                 return view;
@@ -80,74 +87,49 @@ public class RegisterActivity extends AppCompatActivity {
         binding.spinnerGrade.setAdapter(adapter);
     }
 
-    // نص شروط الخدمة مع ألوان مختلفة
     private void setupTermsText() {
         String fullText = "By continuing, you agree to our Terms of Service and\nPrivacy Policy.";
         SpannableString spannable = new SpannableString(fullText);
         int cyan = ContextCompat.getColor(this, R.color.cyan_primary);
         int gray = ContextCompat.getColor(this, R.color.text_secondary);
 
-        // لون رمادي للنص العادي
-        spannable.setSpan(
-                new ForegroundColorSpan(gray),
-                0, fullText.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        // Set default gray color
+        spannable.setSpan(new ForegroundColorSpan(gray), 0, fullText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        // لون سماوي لـ "Terms of Service"
+        // Highlight "Terms of Service"
         int termsStart = fullText.indexOf("Terms of Service");
-        int termsEnd = termsStart + "Terms of Service".length();
-        spannable.setSpan(
-                new ForegroundColorSpan(cyan),
-                termsStart, termsEnd,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        if (termsStart != -1) {
+            spannable.setSpan(new ForegroundColorSpan(cyan), termsStart, termsStart + "Terms of Service".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
-        // لون سماوي لـ "Privacy Policy"
+        // Highlight "Privacy Policy"
         int privacyStart = fullText.indexOf("Privacy Policy");
-        int privacyEnd = privacyStart + "Privacy Policy".length();
-        spannable.setSpan(
-                new ForegroundColorSpan(cyan),
-                privacyStart, privacyEnd,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        if (privacyStart != -1) {
+            spannable.setSpan(new ForegroundColorSpan(cyan), privacyStart, privacyStart + "Privacy Policy".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
         binding.tvTerms.setText(spannable);
     }
 
-    // نص "Already have an account? Log In"
     private void setupLoginText() {
         String fullText = "Already have an account? Log In";
         SpannableString spannable = new SpannableString(fullText);
         int cyan = ContextCompat.getColor(this, R.color.cyan_primary);
         int gray = ContextCompat.getColor(this, R.color.text_secondary);
 
-        // لون رمادي للنص العادي
-        spannable.setSpan(
-                new ForegroundColorSpan(gray),
-                0, fullText.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        spannable.setSpan(new ForegroundColorSpan(gray), 0, fullText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        // لون سماوي لـ "Log In"
         int loginStart = fullText.indexOf("Log In");
-        spannable.setSpan(
-                new ForegroundColorSpan(cyan),
-                loginStart, fullText.length(),
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        );
+        if (loginStart != -1) {
+            spannable.setSpan(new ForegroundColorSpan(cyan), loginStart, fullText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
         binding.tvLogin.setText(spannable);
     }
 
     private void setupClickListeners() {
+        binding.ivBack.setOnClickListener(v -> finish());
 
-        // زر الرجوع
-        binding.ivBack.setOnClickListener(v -> {
-            finish(); // يرجع للصفحة السابقة (Login)
-        });
-
-        // زر إنشاء الحساب
         binding.btnCreateAccount.setOnClickListener(v -> {
             String fullName = binding.etFullName.getText().toString().trim();
             String email = binding.etEmail.getText().toString().trim();
@@ -155,35 +137,37 @@ public class RegisterActivity extends AppCompatActivity {
             String confirmPassword = binding.etConfirmPassword.getText().toString().trim();
             int gradePosition = binding.spinnerGrade.getSelectedItemPosition();
 
-            // التحقق من الحقول
             if (fullName.isEmpty()) {
-                Toast.makeText(this, "Please enter your full name", Toast.LENGTH_SHORT).show();
+                showToast("Please enter your full name");
                 return;
             }
             if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                showToast("Please enter your email");
                 return;
             }
             if (password.isEmpty()) {
-                Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+                showToast("Please enter a password");
                 return;
             }
             if (!password.equals(confirmPassword)) {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                showToast("Passwords do not match");
                 return;
             }
             if (gradePosition == 0) {
-                Toast.makeText(this, "Please select your grade", Toast.LENGTH_SHORT).show();
+                showToast("Please select your grade");
                 return;
             }
 
-            // هنا يمكنك إرسال البيانات للـ Back-end
-            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+            showToast("Account created successfully!");
+            Intent intent = new Intent(RegisterActivity.this, PersonalizationActivity.class);
+            startActivity(intent);
         });
 
-        // رابط تسجيل الدخول
-        binding.tvLogin.setOnClickListener(v -> {
-            finish(); // يرجع لصفحة Login
-        });
+        binding.tvLogin.setOnClickListener(v -> finish());
+    }
+
+    // Helper method to reduce code repetition
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
