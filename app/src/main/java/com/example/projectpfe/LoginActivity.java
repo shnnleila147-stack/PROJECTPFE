@@ -6,6 +6,7 @@ import android.text.Spanned;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -82,8 +83,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.tvSignUp.setOnClickListener(v -> {
-            // الانتقال لصفحة Sign Up
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
+
 
         binding.btnGoogle.setOnClickListener(v -> {
             // تسجيل بـ Google

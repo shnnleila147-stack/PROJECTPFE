@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="28dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="40dp">
+
+        <!-- ============ TOP BAR: Back Arrow + Title ============ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="16dp"
+                android:layout_height="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/cyan_primary" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:letterSpacing="0.1"
+                android:text="DIGITAL SANCTUARY"
+                android:textColor="@color/cyan_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- Spacer to center the title -->
+            <View
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+        </LinearLayout>
+
+        <!-- ============ MAIN TITLE ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:lineSpacingExtra="4dp"
+            android:text="Create Your\nAccount"
+            android:textColor="@color/cyan_primary"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- ============ SUBTITLE ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:lineSpacingExtra="2dp"
+            android:text="Join the high-performance ecosystem designed\nfor your focus and clarity."
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <!-- ============ FULL NAME LABEL ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:letterSpacing="0.08"
+            android:text="FULL NAME"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- ============ FULL NAME FIELD ============ -->
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background"
+            android:hint="Yacine Shnn"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="14dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_hint"
+            android:textSize="14sp" />
+
+        <!-- ============ EMAIL ADDRESS LABEL ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.08"
+            android:text="EMAIL ADDRESS"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- ============ EMAIL FIELD ============ -->
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background"
+            android:hint="exemple@highschl.com"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="14dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_hint"
+            android:textSize="14sp" />
+
+        <!-- ============ PASSWORD LABEL ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.08"
+            android:text="PASSWORD"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- ============ PASSWORD FIELD ============ -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background"
+            android:hint="••••••••••"
+            android:inputType="textPassword"
+            android:paddingHorizontal="14dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_hint"
+            android:textSize="14sp" />
+
+        <!-- ============ CONFIRM PASSWORD LABEL ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.08"
+            android:text="CONFIRM PASSWORD"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- ============ CONFIRM PASSWORD FIELD ============ -->
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background"
+            android:hint="••••••••••"
+            android:inputType="textPassword"
+            android:paddingHorizontal="14dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_hint"
+            android:textSize="14sp" />
+
+        <!-- ============ GRADE LEVEL LABEL ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:letterSpacing="0.08"
+            android:text="GRADE LEVEL"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <!-- ============ GRADE LEVEL SPINNER ============ -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/input_background">
+
+            <Spinner
+                android:id="@+id/spinnerGrade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/gray_hint"
+                android:paddingHorizontal="14dp"
+                android:popupBackground="@color/bg_card" />
+        </FrameLayout>
+
+        <!-- ============ CREATE ACCOUNT BUTTON ============ -->
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_login"
+            android:stateListAnimator="@null"
+            android:text="Create Account"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- ============ TERMS TEXT ============ -->
+        <TextView
+            android:id="@+id/tvTerms"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2dp"
+            android:textSize="12sp" />
+
+        <!-- ============ LOGIN LINK ============ -->
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+</ScrollView>
