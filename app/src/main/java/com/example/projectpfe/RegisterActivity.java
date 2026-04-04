@@ -167,6 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             User user = new User(email, password);
 
+
             apiService.register(user).enqueue(new Callback<User>() {
 
                 @Override

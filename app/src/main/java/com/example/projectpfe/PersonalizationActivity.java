@@ -3,6 +3,7 @@ package com.example.projectpfe;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class PersonalizationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

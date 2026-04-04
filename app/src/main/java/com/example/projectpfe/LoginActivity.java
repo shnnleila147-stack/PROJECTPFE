@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
         binding.btnGoogle.setOnClickListener(v -> {
 
         });
