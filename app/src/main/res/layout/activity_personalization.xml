@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D"
+    android:orientation="vertical">
+
+    <!-- ============ الجزء العلوي: سهم الرجوع والعنوان ============ -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#00E5FF"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="PERSONALIZATION"
+            android:textColor="#00E5FF"
+            android:textSize="14sp"
+            android:letterSpacing="0.1"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- ============ البطاقة المركزية (The Glass Card) ============ -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
+        app:cardBackgroundColor="#1AFFFFFF"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <!-- أيقونة الوجه داخل دائرة -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:cardBackgroundColor="#10FFFFFF"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_face"> </ImageView>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Let's Get to Know\nYou"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Personalize your learning path to\nachieve your academic goals\nfaster."
+                android:textColor="#B0B0B0"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.2" />
+
+            <!-- مؤشر الخطوات (النقاط) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="4dp"
+                    android:background="#00E5FF" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="6dp"
+                    android:background="#40FFFFFF" />
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="4dp"
+                    android:layout_marginStart="6dp"
+                    android:background="#40FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ============ زر NEXT (بتصميم مدمج) ============ -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="40dp"
+        android:text="NEXT"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#00E5FF"
+        android:stateListAnimator="@null" />
+
+</LinearLayout>

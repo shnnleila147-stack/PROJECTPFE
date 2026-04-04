@@ -6,7 +6,6 @@
     android:padding="24dp"
     android:gravity="center_horizontal">
 
-    <!-- الأيقونة في الأعلى -->
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
