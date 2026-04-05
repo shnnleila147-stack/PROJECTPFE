@@ -7,11 +7,21 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
 import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.projectpfe.databinding.ActivityLoginBinding;
+
+// 🔥 إضافات Retrofit
+import com.example.projectpfe.api.ApiClient;
+import com.example.projectpfe.api.ApiService;
+import com.example.projectpfe.model.User;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -65,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
                 binding.ivTogglePassword.setImageResource(R.drawable.ic_eye);
             }
 
-            // ضعي الكيرسور في النهاية
             binding.etPassword.setSelection(binding.etPassword.getText().length());
         });
     }
@@ -75,7 +84,42 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(v -> {
             String email = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();
-            // هنا ستتواصلين مع صديقتك (Back-end)
+
+            // 🔥 تحقق بسيط
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // 🔥 إنشاء API
+            ApiService apiService = ApiClient.getService();
+
+            // 🔥 إنشاء User object
+            User user = new User(email, password);
+
+            // 🔥 إرسال الطلب للسيرفر
+            apiService.login(user).enqueue(new Callback<User>() {
+
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+
+                        // 🔹 هنا نفتح PersonalizationActivity
+                        Intent intent = new Intent(LoginActivity.this, PersonalizationActivity.class);
+                        startActivity(intent);
+
+                        // 🔹 لمنع العودة للـ LoginActivity عند الضغط على Back
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Wrong email/password", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(LoginActivity.this, "Server error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
         });
 
         binding.tvForgot.setOnClickListener(v -> {
@@ -89,11 +133,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
         binding.btnGoogle.setOnClickListener(v -> {
-            // تسجيل بـ Google
+
         });
 
         binding.btnApple.setOnClickListener(v -> {
-            // تسجيل بـ Apple
+
         });
     }
 }

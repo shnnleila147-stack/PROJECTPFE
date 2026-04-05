@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_dark">#0A0A0F</color>
-    <color name="bg_card">#1A1A2E</color>
-    <color name="bg_card_dark">#12121F</color>
+    <color name="bg_dark">#0F0F0F</color>
+    <color name="bg_card">#1A1A1A</color>
     <color name="cyan_primary">#00E5FF</color>
-    <color name="cyan_dark">#00B8D4</color>
-    <color name="cyan_glow">#1A00E5FF</color>
     <color name="white">#FFFFFF</color>
     <color name="gray_hint">#6B6B6B</color>
     <color name="gray_border">#2A2A2A</color>
     <color name="text_secondary">#AAAAAA</color>
-    <color name="text_muted">#666680</color>
-    <color name="progress_bg">#1A1A2E</color>
-    <color name="yellow_accent">#FFD700</color>
-    <color name="nav_bg">#0F0F1A</color>
-    <color name="green_accent">#4CAF50</color>
 </resources>

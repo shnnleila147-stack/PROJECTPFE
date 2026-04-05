@@ -18,6 +18,15 @@ import androidx.core.content.ContextCompat;
 
 import com.example.projectpfe.databinding.ActivityRegisterBinding;
 
+// ✅ Imports الجديدة
+import com.example.projectpfe.api.ApiClient;
+import com.example.projectpfe.api.ApiService;
+import com.example.projectpfe.model.User;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
@@ -26,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Corrected View Binding initialization
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -53,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
         ) {
             @Override
             public boolean isEnabled(int position) {
-                // First item "Select your grade" is not selectable
                 return position != 0;
             }
 
@@ -93,16 +100,13 @@ public class RegisterActivity extends AppCompatActivity {
         int cyan = ContextCompat.getColor(this, R.color.cyan_primary);
         int gray = ContextCompat.getColor(this, R.color.text_secondary);
 
-        // Set default gray color
         spannable.setSpan(new ForegroundColorSpan(gray), 0, fullText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        // Highlight "Terms of Service"
         int termsStart = fullText.indexOf("Terms of Service");
         if (termsStart != -1) {
             spannable.setSpan(new ForegroundColorSpan(cyan), termsStart, termsStart + "Terms of Service".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
 
-        // Highlight "Privacy Policy"
         int privacyStart = fullText.indexOf("Privacy Policy");
         if (privacyStart != -1) {
             spannable.setSpan(new ForegroundColorSpan(cyan), privacyStart, privacyStart + "Privacy Policy".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -158,15 +162,38 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            showToast("Account created successfully!");
-            Intent intent = new Intent(RegisterActivity.this, PersonalizationActivity.class);
-            startActivity(intent);
+            // ✅ الكود الجديد (Backend)
+            ApiService apiService = ApiClient.getService();
+
+            User user = new User(email, password);
+
+
+            apiService.register(user).enqueue(new Callback<User>() {
+
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+
+                        showToast("Account created successfully!");
+
+                        Intent intent = new Intent(RegisterActivity.this, PersonalizationActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        showToast("Registration failed");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    showToast("Server error: " + t.getMessage());
+                }
+            });
         });
 
         binding.tvLogin.setOnClickListener(v -> finish());
     }
 
-    // Helper method to reduce code repetition
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
