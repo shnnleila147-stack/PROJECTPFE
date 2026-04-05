@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PersonalizationActivity" />
+        <activity android:name=".PersonalizationQuestionsActivity" />
 
     </application>
 
