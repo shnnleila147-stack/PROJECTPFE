@@ -38,15 +38,6 @@ public class HomeActivity extends AppCompatActivity {
             // startActivity(intent);
         });
 
-        // زر VIEW ALL
-        binding.tvViewAll.setOnClickListener(v -> {
-            // هنا يمكنك الانتقال لصفحة جميع الأهداف
-        });
-
-        // الزر العائم (FAB)
-        binding.fabAdd.setOnClickListener(v -> {
-            // هنا يمكنك إضافة هدف جديد
-        });
 
         // أيقونة الإشعارات
         binding.ivNotification.setOnClickListener(v -> {
