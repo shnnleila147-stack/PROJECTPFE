@@ -1,5 +1,6 @@
 package com.example.projectpfe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,16 +17,32 @@ public class TodoAiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_ai);
 
-        tabToDo      = findViewById(R.id.tabToDo);
-        tabDoing     = findViewById(R.id.tabDoing);
-        tabDone      = findViewById(R.id.tabDone);
+        tabToDo = findViewById(R.id.tabToDo);
+        tabDoing = findViewById(R.id.tabDoing);
+        tabDone = findViewById(R.id.tabDone);
         btnChoosePlan1 = findViewById(R.id.btnChoosePlan1);
         btnChoosePlan2 = findViewById(R.id.btnChoosePlan2);
 
-        // التابات
-        tabToDo.setOnClickListener(v  -> setActiveTab(0));
-        tabDoing.setOnClickListener(v -> setActiveTab(1));
-        tabDone.setOnClickListener(v  -> setActiveTab(2));
+        // ✅ Tab TO DO
+        tabToDo.setOnClickListener(v -> {
+            setActiveTab(0);
+            startActivity(new Intent(this, TodoActivity.class));
+            finish();
+        });
+
+        // ✅ Tab DOING
+        tabDoing.setOnClickListener(v -> {
+            setActiveTab(1);
+            startActivity(new Intent(this, DoingActivity.class));
+            finish();
+        });
+
+        // ✅ Tab DONE
+        tabDone.setOnClickListener(v -> {
+            setActiveTab(2);
+            startActivity(new Intent(this, DoneActivity.class));
+            finish();
+        });
 
         // أزرار الخطط
         btnChoosePlan1.setOnClickListener(v ->
@@ -41,6 +58,7 @@ public class TodoAiActivity extends AppCompatActivity {
         tabToDo.setTextColor(0xFF666680);
         tabDoing.setTextColor(0xFF666680);
         tabDone.setTextColor(0xFF666680);
+
         tabToDo.setBackgroundResource(R.drawable.tab_inactive_bg);
         tabDoing.setBackgroundResource(R.drawable.tab_inactive_bg);
         tabDone.setBackgroundResource(R.drawable.tab_inactive_bg);

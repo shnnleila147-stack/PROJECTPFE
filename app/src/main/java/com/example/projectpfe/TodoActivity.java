@@ -1,13 +1,19 @@
 package com.example.projectpfe;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TodoActivity extends AppCompatActivity {
 
     TextView tabToDo, tabDoing, tabDone;
+    Button btnSave;
+    EditText etGoal, etTopic, etTime, etDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,31 +23,43 @@ public class TodoActivity extends AppCompatActivity {
         tabToDo  = findViewById(R.id.tabToDo);
         tabDoing = findViewById(R.id.tabDoing);
         tabDone  = findViewById(R.id.tabDone);
+        btnSave  = findViewById(R.id.btnSave);
+        etGoal   = findViewById(R.id.etGoal);
+        etTopic  = findViewById(R.id.etTopic);
+        etTime   = findViewById(R.id.etTime);
+        etDescription = findViewById(R.id.etDescription);
 
-        tabToDo.setOnClickListener(v -> setActiveTab(0));
-        tabDoing.setOnClickListener(v -> setActiveTab(1));
-        tabDone.setOnClickListener(v -> setActiveTab(2));
-    }
+        // ✅ Tab TO DO - نحن هنا بالفعل
+        tabToDo.setOnClickListener(v -> {
+            // نحن بالفعل هنا، لا شيء
+        });
 
-    private void setActiveTab(int index) {
-        // إعادة كل التابات لغير مفعّل
-        tabToDo.setTextColor(0xFF666680);
-        tabDoing.setTextColor(0xFF666680);
-        tabDone.setTextColor(0xFF666680);
-        tabToDo.setBackgroundResource(R.drawable.tab_inactive_bg);
-        tabDoing.setBackgroundResource(R.drawable.tab_inactive_bg);
-        tabDone.setBackgroundResource(R.drawable.tab_inactive_bg);
+        // ✅ Tab DOING - ننتقل لـ DoingActivity
+        tabDoing.setOnClickListener(v -> {
+            startActivity(new Intent(this, DoingActivity.class));
+            finish();
+        });
 
-        // تفعيل التاب المختار
-        if (index == 0) {
-            tabToDo.setTextColor(0xFF00E5FF);
-            tabToDo.setBackgroundResource(R.drawable.tab_active_bg);
-        } else if (index == 1) {
-            tabDoing.setTextColor(0xFF00E5FF);
-            tabDoing.setBackgroundResource(R.drawable.tab_active_bg);
-        } else {
-            tabDone.setTextColor(0xFF00E5FF);
-            tabDone.setBackgroundResource(R.drawable.tab_active_bg);
-        }
+        // ✅ Tab DONE - ننتقل لـ DoneActivity
+        tabDone.setOnClickListener(v -> {
+            startActivity(new Intent(this, DoneActivity.class));
+            finish();
+        });
+
+        // ✅ زر SAVE - ننتقل لـ TodoAiActivity
+        btnSave.setOnClickListener(v -> {
+            String goal = etGoal.getText().toString().trim();
+            if (goal.isEmpty()) {
+                Toast.makeText(this, "Please enter a goal!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            startActivity(new Intent(this, TodoAiActivity.class));
+        });
+
+        // ✅ نفس الشيء في TodoAiActivity
+        ImageView ivMoreOptions = findViewById(R.id.ivMoreOptions);
+        ivMoreOptions.setOnClickListener(v -> {
+            // لاحقاً - واجهة الإعدادات
+        });
     }
 }

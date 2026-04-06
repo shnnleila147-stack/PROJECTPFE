@@ -22,11 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".PersonalizationQuestionsActivity" />
         <activity android:name=".PersonalizationActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".TodoActivity" />
         <activity android:name=".TodoAiActivity" />
-
+        <activity android:name=".DoingActivity" />
+        <activity android:name=".DoneActivity" />
     </application>
 
 </manifest>
