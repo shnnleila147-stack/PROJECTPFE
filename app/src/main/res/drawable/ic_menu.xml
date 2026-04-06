@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- الخط العلوي -->
+    <item
+        android:top="2dp"
+        android:bottom="18dp"
+        android:left="0dp"
+        android:right="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00E5FF" />
+            <corners android:radius="2dp" />
+            <size android:height="3dp" />
+        </shape>
+    </item>
+
+    <!-- الخط الأوسط -->
+    <item
+        android:top="10dp"
+        android:bottom="10dp"
+        android:left="0dp"
+        android:right="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00E5FF" />
+            <corners android:radius="2dp" />
+            <size android:height="3dp" />
+        </shape>
+    </item>
+
+    <!-- الخط السفلي -->
+    <item
+        android:top="18dp"
+        android:bottom="2dp"
+        android:left="0dp"
+        android:right="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00E5FF" />
+            <corners android:radius="2dp" />
+            <size android:height="3dp" />
+        </shape>
+    </item>
+
+</layer-list>

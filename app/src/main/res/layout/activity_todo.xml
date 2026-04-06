@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- ===== HEADER ثابت في الأعلى ===== -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="12dp"
+        android:background="#0A0A0F">
+
+        <!-- أيقونة القائمة يسار -->
+
+        <!-- أيقونة الجرس يمين -->
+        <ImageView
+            android:id="@+id/ivMoreOptions"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="37dp"
+            android:src="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_notification"
+            app:tint="#00E5FF" />
+
+    </RelativeLayout>
+
+    <!-- ===== TABS: TO DO / DOING / DONE ===== -->
+    <LinearLayout
+        android:id="@+id/tabsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="8dp"
+        android:background="#0A0A0F">
+
+        <!-- Tab TO DO (مفعّل) -->
+        <TextView
+            android:id="@+id/tabToDo"
+            android:layout_width="121dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_active_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="TODO"
+            android:textColor="#00E5FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <!-- Tab DOING -->
+        <TextView
+            android:id="@+id/tabDoing"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DOING"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <!-- Tab DONE -->
+        <TextView
+            android:id="@+id/tabDone"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DONE"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- ===== المحتوى القابل للتمرير ===== -->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavBar"
+        android:layout_below="@id/tabsLayout"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="20dp">
+
+            <!-- ===== العنوان الكبير ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.1"
+                android:text="PLANNING: Set Your\nGoal"
+                android:textColor="#00E5FF"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!-- ===== النص الوصفي ===== -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.3"
+                android:text="Define the trajectory of your mission.\nPrecision in planning yields excellence in\nexecution."
+                android:textColor="#666680"
+                android:textSize="14sp" />
+
+            <!-- ===== حقل GOAL ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:letterSpacing="0.1"
+                android:text="GOAL :"
+                android:textColor="#00E5FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etGoal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_field_bg"
+                android:hint=""
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#333344"
+                android:textSize="14sp" />
+
+            <!-- ===== حقل TOPIC ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.1"
+                android:text="TOPIC"
+                android:textColor="#00E5FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etTopic"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_field_bg"
+                android:hint=""
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#333344"
+                android:textSize="14sp" />
+
+            <!-- ===== حقل TIME ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.1"
+                android:text="TIME :"
+                android:textColor="#00E5FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etTime"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_field_bg"
+                android:hint=""
+                android:inputType="text"
+                android:paddingHorizontal="16dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#333344"
+                android:textSize="14sp" />
+
+            <!-- ===== حقل DESCRIPTION ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:letterSpacing="0.1"
+                android:text="DESCRIPTION :"
+                android:textColor="#00E5FF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/input_field_bg"
+                android:gravity="top"
+                android:hint=""
+                android:inputType="textMultiLine"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="12dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#333344"
+                android:textSize="14sp" />
+
+            <!-- ===== زر SAVE ===== -->
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_save"
+                android:letterSpacing="0.15"
+                android:text="SAVE"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation Bar ===== -->
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bar"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="8dp">
+
+        <!-- Home -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_home" app:tint="#666680"/>
+        </LinearLayout>
+
+        <!-- TODO (مفعّل) -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_chart" app:tint="#00E5FF"/>
+            <View android:layout_width="4dp" android:layout_height="4dp"
+                android:layout_marginTop="4dp" android:background="#00E5FF"/>
+        </LinearLayout>
+
+        <!-- People -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_person" app:tint="#666680"/>
+        </LinearLayout>
+
+        <!-- Modules -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_modules" app:tint="#666680"/>
+        </LinearLayout>
+
+        <!-- Profile -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_book" app:tint="#666680"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

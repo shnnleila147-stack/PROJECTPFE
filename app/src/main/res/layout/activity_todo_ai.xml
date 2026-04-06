@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- ===== HEADER ثابت ===== -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="12dp"
+        android:background="#0A0A0F">
+
+        <ImageView
+            android:id="@+id/ivMoreOptions"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="37dp"
+            android:src="@drawable/ic_menu" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/ic_notification"
+            app:tint="#00E5FF" />
+    </RelativeLayout>
+
+    <!-- ===== TABS ===== -->
+    <LinearLayout
+        android:id="@+id/tabsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="8dp"
+        android:background="#0A0A0F">
+
+        <TextView
+            android:id="@+id/tabToDo"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_active_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="TODO"
+            android:textColor="#00E5FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabDoing"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DOING"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabDone"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DONE"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- ===== المحتوى القابل للتمرير ===== -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabsLayout"
+        android:layout_above="@+id/bottomNavBar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- ⚡ NEURAL OPTIMIZATION -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_sparkle"
+                    app:tint="#00E5FF" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="NEURAL OPTIMIZATION"
+                    android:textColor="#00E5FF"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.1" />
+            </LinearLayout>
+
+            <!-- AI Recommended Plan -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="AI Recommended\nPlan"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:lineSpacingMultiplier="1.1" />
+
+            <!-- الوصف -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Our algorithms have analyzed your cognitive patterns and deadlines to generate these high-performance trajectories."
+                android:textColor="#666680"
+                android:textSize="13sp"
+                android:lineSpacingMultiplier="1.4" />
+
+            <!-- ============================
+                 بطاقة Plan 1: Focused Concept
+                 ============================ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- أيقونة + Badge STRATEGIC -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="STRATEGIC"
+                        android:textColor="#00E5FF"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:background="@drawable/tab_active_bg" />
+                </RelativeLayout>
+
+                <!-- عنوان البطاقة -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Plan 1: Focused Concept"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- وصف البطاقة -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Designed for deep cognitive immersion. Minimizes context switching to maximize creative or analytical output."
+                    android:textColor="#666680"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+                <!-- خط فاصل -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="#1A1A2E" />
+
+                <!-- ✅ النقطة 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="90-minute hyper-focus blocks for core conceptual development."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- ✅ النقطة 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Digital blackouts during execution phases (Zero notifications)."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- ✅ النقطة 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="20dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Single-variable tracking for progress clarity."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- زر CHOOSE PLAN -->
+                <Button
+                    android:id="@+id/btnChoosePlan1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_choose_plan"
+                    android:text="CHOOSE PLAN"
+                    android:textColor="#00E5FF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- ============================
+                 بطاقة Plan 2: Micro-Step
+                 ============================ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- أيقونة + Badge AGILE -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_chart"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="AGILE"
+                        android:textColor="#00E5FF"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:background="@drawable/tab_active_bg" />
+                </RelativeLayout>
+
+                <!-- عنوان البطاقة -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Plan 2: Micro-Step"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- وصف البطاقة -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Optimized for momentum building. Deconstructs complex barriers into friction-less atomic actions."
+                    android:textColor="#666680"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+                <!-- خط فاصل -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="#1A1A2E" />
+
+                <!-- ✅ النقطة 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="20-minute interval sprints followed by 5-minute recalibration."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- ✅ النقطة 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Immediate dopamine reward loops for sub-task completion."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- ✅ النقطة 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top"
+                    android:layout_marginBottom="20dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="Parallel processing of administrative and tactical duties."
+                        android:textColor="#AAAACC"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3" />
+                </LinearLayout>
+
+                <!-- زر CHOOSE PLAN -->
+                <Button
+                    android:id="@+id/btnChoosePlan2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_choose_plan"
+                    android:text="CHOOSE PLAN"
+                    android:textColor="#00E5FF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- ============================
+                 Plan Analytics Preview
+                 ============================ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- أيقونة الروبوت -->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/bg_card_dark_rounded"
+                    android:padding="14dp"
+                    android:src="@drawable/ic_robot"
+                    app:tint="#00E5FF" />
+
+                <!-- عنوان Analytics -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Plan Analytics Preview"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <!-- النص التنبؤي -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Predicted success rate: 94.2% based on your recent peak productivity windows (14:00 - 17:00)."
+                    android:textColor="#666680"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.4"
+                    android:paddingHorizontal="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation Bar ===== -->
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bar"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="8dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_home" app:tint="#666680"/>
+        </LinearLayout>
+
+        <!-- TODO مفعّل -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_chart" app:tint="#00E5FF"/>
+            <View android:layout_width="4dp" android:layout_height="4dp"
+                android:layout_marginTop="4dp" android:background="#00E5FF"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_person" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_modules" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_book" app:tint="#666680"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
