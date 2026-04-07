@@ -16,7 +16,10 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout bottomNavBar = findViewById(R.id.bottomNavBar);
 
         // الأيقونة 1 - Home (نحن هنا)
-        bottomNavBar.getChildAt(0).setOnClickListener(v -> {});
+        bottomNavBar.getChildAt(0).setOnClickListener(v -> {
+            startActivity(new Intent(this, HomeActivity.class));
+
+        });
 
         // ✅ الأيقونة 2 - TODO
         bottomNavBar.getChildAt(1).setOnClickListener(v -> {

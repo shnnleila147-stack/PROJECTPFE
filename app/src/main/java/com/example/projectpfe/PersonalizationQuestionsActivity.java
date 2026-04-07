@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.projectpfe.api.ApiClient;
 import com.example.projectpfe.api.ApiService;
 import com.example.projectpfe.model.PersonalizationRequest;
+import com.example.projectpfe.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,9 +133,18 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     }
 
     private void sendAnswersToServer() {
-        // إنشاء object للإرسال
+
         PersonalizationRequest request = new PersonalizationRequest();
-        request.setUserId(1); // غيري حسب user الحقيقي
+
+        int userId = getSharedPreferences("user", MODE_PRIVATE)
+                .getInt("user_id", -1);
+
+        if (userId == -1) {
+            Toast.makeText(this, "User not found!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        request.setUserId(userId);
         request.setQ1(answers[0] + 1);
         request.setQ2(answers[1] + 1);
         request.setQ3(answers[2] + 1);
@@ -143,25 +153,49 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
+        // ✅ 1. نحفظ الإجابات
         apiService.saveAnswers(request).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(PersonalizationQuestionsActivity.this,
-                            "Saved successfully!", Toast.LENGTH_SHORT).show();
 
-                    startActivity(new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class));
-                    finish();
+                if (response.isSuccessful()) {
+
+                    // ✅ 2. نحدث personalization = true
+                    apiService.setPersonalized(userId).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+
+                            if (response.isSuccessful()) {
+                                Toast.makeText(PersonalizationQuestionsActivity.this,
+                                        "", Toast.LENGTH_SHORT).show();
+
+                                // ✅ 3. نروح Home
+                                startActivity(new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class));
+                                finish();
+
+                            } else {
+                                Toast.makeText(PersonalizationQuestionsActivity.this,
+                                        "Error updating user", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+                            Toast.makeText(PersonalizationQuestionsActivity.this,
+                                    "Server error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
                     Toast.makeText(PersonalizationQuestionsActivity.this,
-                            "Server error: " + response.code(), Toast.LENGTH_LONG).show();
+                            "Error saving answers", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(PersonalizationQuestionsActivity.this,
-                        "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                        "Network error", Toast.LENGTH_LONG).show();
             }
         });
     }

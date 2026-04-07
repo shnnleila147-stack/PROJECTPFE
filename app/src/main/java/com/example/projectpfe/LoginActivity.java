@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.projectpfe.databinding.ActivityLoginBinding;
-
-// 🔥 إضافات Retrofit
 import com.example.projectpfe.api.ApiClient;
 import com.example.projectpfe.api.ApiService;
 import com.example.projectpfe.model.User;
@@ -39,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         setupClickListeners();
     }
 
-    // نص "Don't have your account? sign up"
     private void setupSignUpText() {
         String fullText = "Don't have your account? sign up";
         SpannableString spannable = new SpannableString(fullText);
@@ -53,28 +50,19 @@ public class LoginActivity extends AppCompatActivity {
         );
 
         binding.tvSignUp.setText(spannable);
-        binding.tvSignUp.setTextColor(
-                ContextCompat.getColor(this, R.color.text_secondary)
-        );
+        binding.tvSignUp.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
     }
 
-    // إظهار/إخفاء كلمة المرور
     private void setupPasswordToggle() {
         binding.ivTogglePassword.setOnClickListener(v -> {
             isPasswordVisible = !isPasswordVisible;
-
             if (isPasswordVisible) {
-                binding.etPassword.setTransformationMethod(
-                        HideReturnsTransformationMethod.getInstance()
-                );
+                binding.etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 binding.ivTogglePassword.setImageResource(R.drawable.ic_eye_off);
             } else {
-                binding.etPassword.setTransformationMethod(
-                        PasswordTransformationMethod.getInstance()
-                );
+                binding.etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 binding.ivTogglePassword.setImageResource(R.drawable.ic_eye);
             }
-
             binding.etPassword.setSelection(binding.etPassword.getText().length());
         });
     }
@@ -85,36 +73,46 @@ public class LoginActivity extends AppCompatActivity {
             String email = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();
 
-            // 🔥 تحقق بسيط
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(LoginActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 🔥 إنشاء API
             ApiService apiService = ApiClient.getService();
-
-            // 🔥 إنشاء User object
             User user = new User(email, password);
 
-            // 🔥 إرسال الطلب للسيرفر
             apiService.login(user).enqueue(new Callback<User>() {
 
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        User loggedUser = response.body();
 
-                        // 🔹 هنا نفتح PersonalizationActivity
-                        Intent intent = new Intent(LoginActivity.this, PersonalizationActivity.class);
-                        startActivity(intent);
+                        // ✅ حفظ userId
+                        getSharedPreferences("user", MODE_PRIVATE)
+                                .edit()
+                                .putInt("user_id", loggedUser.getId())
+                                .apply();
 
-                        // 🔹 لمنع العودة للـ LoginActivity عند الضغط على Back
-                        finish();
+
+
+
+                        // ✅ التوجيه الصحيح
+                        if (loggedUser.isPersonalized()) {
+                            // مستخدم قديم أكمل التخصيص → Home
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        } else {
+                            // مستخدم جديد لم يكمل التخصيص → Personalization
+                            startActivity(new Intent(LoginActivity.this, PersonalizationActivity.class));
+                        }
+
+                        finish(); // ✅ finish() مرة واحدة فقط (كانت مكررة مرتين في الأصل)
+
                     } else {
                         Toast.makeText(LoginActivity.this, "Wrong email/password", Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<User> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "Server error: " + t.getMessage(), Toast.LENGTH_LONG).show();
@@ -122,22 +120,13 @@ public class LoginActivity extends AppCompatActivity {
             });
         });
 
-        binding.tvForgot.setOnClickListener(v -> {
-            // الانتقال لصفحة Forgot Password
-        });
+        binding.tvForgot.setOnClickListener(v -> {});
 
         binding.tvSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
-
-        binding.btnGoogle.setOnClickListener(v -> {
-
-        });
-
-        binding.btnApple.setOnClickListener(v -> {
-
-        });
+        binding.btnGoogle.setOnClickListener(v -> {});
+        binding.btnApple.setOnClickListener(v -> {});
     }
 }
