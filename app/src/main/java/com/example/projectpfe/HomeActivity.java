@@ -12,7 +12,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        ImageView ivNotification = findViewById(R.id.ivNotification);
+        ivNotification.setOnClickListener(v -> {
+           // startActivity(new Intent(this, NotificationsActivity.class));
+        });
         LinearLayout bottomNavBar = findViewById(R.id.bottomNavBar);
 
         // الأيقونة 1 - Home (نحن هنا)
