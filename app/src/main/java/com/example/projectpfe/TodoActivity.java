@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,7 +28,7 @@ public class TodoActivity extends AppCompatActivity {
         etTopic  = findViewById(R.id.etTopic);
         etTime   = findViewById(R.id.etTime);
         etDescription = findViewById(R.id.etDescription);
-        LinearLayout bottomNavBar = findViewById(R.id.bottomNavBar);
+
         // ✅ Tab TO DO - نحن هنا بالفعل
         tabToDo.setOnClickListener(v -> {
             // نحن بالفعل هنا، لا شيء
@@ -63,5 +62,4 @@ public class TodoActivity extends AppCompatActivity {
             // لاحقاً - واجهة الإعدادات
         });
     }
-
 }

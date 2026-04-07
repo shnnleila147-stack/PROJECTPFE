@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void setupClickListeners() {
 
-
         binding.btnLogin.setOnClickListener(v -> {
             String email = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();

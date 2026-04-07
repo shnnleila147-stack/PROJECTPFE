@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="12dp"
+        android:background="#0A0A0F">
+
+        <ImageView
+            android:id="@+id/ivMoreOptions"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="22dp"
+            android:src="@drawable/ic_menu" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_notification"
+            app:tint="#00E5FF" />
+    </RelativeLayout>
+
+    <!-- TABS -->
+    <LinearLayout
+        android:id="@+id/tabsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="8dp"
+        android:background="#0A0A0F">
+
+        <TextView
+            android:id="@+id/tabToDo"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="TODO"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabDoing"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/tab_active_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DOING"
+            android:textColor="#00E5FF"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabDone"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_inactive_bg"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:text="DONE"
+            android:textColor="#666680"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- CONTENT -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabsLayout"
+        android:layout_above="@+id/bottomNavBar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- CURRENT SESSION -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CURRENT SESSION"
+                android:textColor="#666680"
+                android:textSize="11sp"
+                android:letterSpacing="0.1" />
+
+            <!-- DAILY TASKS: MATH: -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="DAILY TASKS: MATH:"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <!-- FOCUS MODE ACTIVE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="20dp"
+                android:text="FOCUS MODE ACTIVE"
+                android:textColor="#666680"
+                android:textSize="12sp"
+                android:letterSpacing="0.1" />
+
+            <!-- ====== بطاقة Read Function ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Read Function"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="85%"
+                        android:textColor="#00E5FF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Reviewing derivatives and composite rules"
+                    android:textColor="#666680"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:progress="85"
+                    android:progressDrawable="@drawable/bg_goal_progress" />
+
+                <!-- DETAILS / NOTES -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DETAILS"
+                        android:textColor="#00E5FF"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="NOTES"
+                        android:textColor="#00E5FF"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.1" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RESOURCE"
+                        android:textColor="#444455"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ====== بطاقة Basic Exercises ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Basic Exercises"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="40%"
+                        android:textColor="#00E5FF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Set A: Problems 1 through 25"
+                    android:textColor="#666680"
+                    android:textSize="13sp" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:progress="40"
+                    android:progressDrawable="@drawable/bg_goal_progress" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RESOURCE"
+                        android:textColor="#444455"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ====== بطاقة Advanced Proofs ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Advanced Proofs"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="12%"
+                        android:textColor="#00E5FF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Geometric series convergence proof"
+                    android:textColor="#666680"
+                    android:textSize="13sp" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:progress="12"
+                    android:progressDrawable="@drawable/bg_goal_progress" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RESOURCE"
+                        android:textColor="#444455"
+                        android:textSize="11sp"
+                        android:letterSpacing="0.1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ====== Final Check-in ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Final Check-in"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Have you met your cognitive goals for today?"
+                    android:textColor="#666680"
+                    android:textSize="13sp"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <!-- زر DAY COMPLETED -->
+                <Button
+                    android:id="@+id/btnDayCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/tab_active_bg"
+                    android:text="DAY\nCOMPLETED"
+                    android:textColor="#00E5FF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingHorizontal="24dp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bar"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="8dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_home" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_chart" app:tint="#00E5FF"/>
+            <View android:layout_width="4dp" android:layout_height="4dp"
+                android:layout_marginTop="4dp" android:background="#00E5FF"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_person" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_modules" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_book" app:tint="#666680"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

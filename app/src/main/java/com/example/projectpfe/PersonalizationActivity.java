@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PersonalizationActivity extends AppCompatActivity {
 
-
     Button btnNext;
 
     @Override

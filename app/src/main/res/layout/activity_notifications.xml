@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- ===== HEADER ===== -->
+
+    <!-- ===== المحتوى ===== -->
+
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="43dp"
+        android:background="#0A0A0F"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="16dp">
+
+        <!-- أيقونة القائمة -->
+
+        <!-- عنوان NOTIFICATIONS -->
+
+        <!-- أيقونة الإعدادات -->
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="26dp"
+            android:src="@drawable/ic_menu" />
+
+        <TextView
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_marginEnd="7dp"
+            android:letterSpacing="0.15"
+            android:text="NOTIFICATIONS"
+            android:textColor="#00E5FF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="21dp"
+            android:src="@drawable/ic_target"
+            app:tint="#00E5FF" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:layout_above="@+id/bottomNavBar"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
+
+            <!-- STAY ON TRACK -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STAY ON TRACK"
+                android:textColor="#00E5FF"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="4dp" />
+
+            <!-- SYSTEM FEED & MISSION UPDATES -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SYSTEM FEED &amp; MISSION UPDATES"
+                android:textColor="#444455"
+                android:textSize="11sp"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="24dp" />
+
+            <!-- ====== بطاقة 1: MISSION PENDING ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- أيقونة + العنوان + badge -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_target"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="MISSION PENDING"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <!-- IMMEDIATE badge -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IMMEDIATE"
+                        android:textColor="#00E5FF"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="4dp"
+                        android:background="@drawable/tab_active_bg" />
+                </LinearLayout>
+
+                <!-- النص -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The mission is not yet complete... but it awaits you. Return to the dashboard to finalize phase 2."
+                    android:textColor="#888899"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.4"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- الأزرار -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnContinueNow"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/btn_save"
+                        android:text="CONTINUE NOW"
+                        android:textColor="#000000"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.05"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnLater"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_choose_plan"
+                        android:text="LATER"
+                        android:textColor="#00E5FF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ====== بطاقة 2: DEEP FOCUS ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- أيقونة + العنوان + الوقت -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_sparkle"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="DEEP FOCUS"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3m ago"
+                        android:textColor="#444455"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- النص -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingMultiplier="1.4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp">
+                    <![CDATA[Your scheduled deep focus session is starting in <font color="#00E5FF"><b>3 minutes</b></font>. Environmental optimization recommended.]]>
+                </TextView>
+
+                <!-- زر INITIALIZE PROTOCOL -->
+                <Button
+                    android:id="@+id/btnInitialize"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/btn_choose_plan"
+                    android:text="INITIALIZE PROTOCOL"
+                    android:textColor="#00E5FF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.05"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- ====== بطاقة 3: WEEKLY EFFICIENCY ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_chart"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="WEEKLY EFFICIENCY"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2h ago"
+                        android:textColor="#444455"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#888899"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.4">
+                    <![CDATA[Efficiency score increased by <font color="#00E5FF"><b>+12%</b></font> compared to last cycle. Consistency is your greatest asset.]]>
+                </TextView>
+            </LinearLayout>
+
+            <!-- ====== بطاقة 4: STREAK SECURED ====== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_rounded"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_science"
+                        app:tint="#00E5FF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="STREAK SECURED"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5h ago"
+                        android:textColor="#444455"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#888899"
+                    android:textSize="13sp"
+                    android:lineSpacingMultiplier="1.4">
+                    <![CDATA[Daily streak maintained: <font color="#FFFFFF"><b>14 DAYS</b></font>. Do not let the flame flicker.]]>
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ===== Bottom Navigation Bar ===== -->
+    <LinearLayout
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_nav_bar"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="8dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_home" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_chart" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_person" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_modules" app:tint="#666680"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:gravity="center">
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/ic_book" app:tint="#666680"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

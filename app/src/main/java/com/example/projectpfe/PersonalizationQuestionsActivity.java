@@ -32,7 +32,6 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     private int currentQuestion = 0;
     private final int totalQuestions = 5;
     private int[] answers;
-
     private int selectedAnswer = -1;
 
     private View[] circles;

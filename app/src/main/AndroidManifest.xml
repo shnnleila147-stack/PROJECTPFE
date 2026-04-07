@@ -32,8 +32,7 @@
         <activity android:name=".DoneActivity" />
         <activity android:name=".HomeActivity"/>
         <activity android:name=".DashboardActivity" />
-
+        <activity android:name=".NotificationsActivity"/>
     </application>
 
 </manifest>
-

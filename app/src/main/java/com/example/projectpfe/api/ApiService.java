@@ -18,7 +18,6 @@ public interface ApiService {
     Call<User> login(@Body User user);
 
     @POST("api/personalization")
-
     Call<Void> saveAnswers(@Body PersonalizationRequest request);
 
     // ✅ الجديد (مهم)
