@@ -21,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
         });
 
+
         // ✅ الأيقونة 2 - TODO
         bottomNavBar.getChildAt(1).setOnClickListener(v -> {
             startActivity(new Intent(this, TodoActivity.class));
