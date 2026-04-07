@@ -240,7 +240,7 @@
                         android:text="Review Taylor Series expansions"
                         android:textColor="#444455"
                         android:textSize="13sp"
-                        android:paintFlags="8"
+
                         android:lineSpacingMultiplier="1.2" />
                 </LinearLayout>
 
