@@ -43,10 +43,10 @@
         <!-- أيقونة الجرس يمين -->
         <ImageView
             android:id="@+id/ivNotification"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_marginEnd="22dp"
             android:src="@drawable/ic_notification"
             app:tint="#00E5FF" />
 

@@ -29,6 +29,8 @@
         <activity android:name=".TodoAiActivity" />
         <activity android:name=".DoingActivity" />
         <activity android:name=".DoneActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".NotificationsActivity" />
     </application>
 
 </manifest>

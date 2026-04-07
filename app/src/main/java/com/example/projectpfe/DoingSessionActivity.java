@@ -2,36 +2,42 @@ package com.example.projectpfe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-public class DoingActivity extends AppCompatActivity {
+
+public class DoingSessionActivity extends AppCompatActivity {
 
     TextView tabToDo, tabDoing, tabDone;
+    Button btnDayCompleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doing);
-        ImageView ivNotification = findViewById(R.id.ivNotification);
-        ivNotification.setOnClickListener(v -> {
-            startActivity(new Intent(this, NotificationsActivity.class));
-        });
+        setContentView(R.layout.activity_doing_session);
+
         tabToDo  = findViewById(R.id.tabToDo);
         tabDoing = findViewById(R.id.tabDoing);
         tabDone  = findViewById(R.id.tabDone);
+        btnDayCompleted = findViewById(R.id.btnDayCompleted);
 
-        // ✅ TO DO → TodoActivity
         tabToDo.setOnClickListener(v -> {
             startActivity(new Intent(this, TodoActivity.class));
             finish();
         });
 
-        // ✅ DOING - نحن هنا
-        tabDoing.setOnClickListener(v -> { });
+        tabDoing.setOnClickListener(v -> {
+            startActivity(new Intent(this, DoingActivity.class));
+            finish();
+        });
 
-        // ✅ DONE → DoneActivity
         tabDone.setOnClickListener(v -> {
+            startActivity(new Intent(this, DoneActivity.class));
+            finish();
+        });
+
+        // ✅ زر DAY COMPLETED → ينتقل لـ DoneActivity
+        btnDayCompleted.setOnClickListener(v -> {
             startActivity(new Intent(this, DoneActivity.class));
             finish();
         });
