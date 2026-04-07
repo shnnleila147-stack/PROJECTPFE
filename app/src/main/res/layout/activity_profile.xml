@@ -327,6 +327,7 @@
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="ATTEMPT RATE" android:textColor="#666680" android:textSize="10sp"/>
+
                 </LinearLayout>
 
                 <!-- بطاقة 2: SUCCESS RATE 88% -->

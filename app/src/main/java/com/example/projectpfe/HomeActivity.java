@@ -1,47 +1,39 @@
 package com.example.projectpfe;
 
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.projectpfe.databinding.ActivityHomeBinding;
-
 public class HomeActivity extends AppCompatActivity {
-
-    private ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHomeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_home);
 
-        setupUI();
-        setupClickListeners();
-    }
+        LinearLayout bottomNavBar = findViewById(R.id.bottomNavBar);
 
-    private void setupUI() {
-        // يمكنك تغيير اسم المستخدم هنا
-        binding.tvUserName.setText("RAYANE");
-        binding.tvHello.setText("Hello,");
-        binding.tvProgressPercent.setText("75%");
-        binding.tvTimeFocus.setText("4.2 hrs");
-        binding.tvStreak.setText("12 Days");
-        binding.tvFocusSubject.setText("Advanced\nMathematics");
-    }
+        // الأيقونة 1 - Home (نحن هنا)
+        bottomNavBar.getChildAt(0).setOnClickListener(v -> {});
 
-    private void setupClickListeners() {
-        // زر START SESSION
-        binding.btnStartSession.setOnClickListener(v -> {
-            // هنا يمكنك الانتقال لصفحة الجلسة
-            // Intent intent = new Intent(this, SessionActivity.class);
-            // startActivity(intent);
+        // ✅ الأيقونة 2 - TODO
+        bottomNavBar.getChildAt(1).setOnClickListener(v -> {
+            startActivity(new Intent(this, TodoActivity.class));
         });
 
+        // الأيقونة 3 - Community
+        bottomNavBar.getChildAt(2).setOnClickListener(v -> {});
 
-        // أيقونة الإشعارات
-        binding.ivNotification.setOnClickListener(v -> {
-            // هنا يمكنك الانتقال لصفحة الإشعارات
+        // ✅ الأيقونة 4 - Dashboard
+        bottomNavBar.getChildAt(3).setOnClickListener(v -> {
+            startActivity(new Intent(this, DashboardActivity.class));
+        });
+
+        // الأيقونة 5 - Profile
+        bottomNavBar.getChildAt(4).setOnClickListener(v -> {
+            startActivity(new Intent(this, ProfileActivity.class));
         });
     }
 }
