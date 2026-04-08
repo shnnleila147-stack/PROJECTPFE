@@ -2,10 +2,10 @@ package com.example.projectpfe;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-public class DoingActivity extends AppCompatActivity {
+
+public class DoingActivity extends BaseActivity {
 
     TextView tabToDo, tabDoing, tabDone;
 
@@ -13,27 +13,27 @@ public class DoingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doing);
-        ImageView ivNotification = findViewById(R.id.ivNotification);
-        ivNotification.setOnClickListener(v -> {
-            startActivity(new Intent(this, NotificationsActivity.class));
-        });
+
+        setupNotificationBell(); // ✅
+        setupBottomNav(1);       // ✅
+
         tabToDo  = findViewById(R.id.tabToDo);
         tabDoing = findViewById(R.id.tabDoing);
         tabDone  = findViewById(R.id.tabDone);
 
-        // ✅ TO DO → TodoActivity
         tabToDo.setOnClickListener(v -> {
             startActivity(new Intent(this, TodoActivity.class));
             finish();
         });
-
-        // ✅ DOING - نحن هنا
-        tabDoing.setOnClickListener(v -> { });
-
-        // ✅ DONE → DoneActivity
+        tabDoing.setOnClickListener(v -> {});
         tabDone.setOnClickListener(v -> {
             startActivity(new Intent(this, DoneActivity.class));
             finish();
         });
+
+        Button btnPauseTimer = findViewById(R.id.btnPauseTimer);
+        btnPauseTimer.setOnClickListener(v ->
+                startActivity(new Intent(this, DoingSessionActivity.class))
+        );
     }
 }

@@ -1,15 +1,14 @@
 package com.example.projectpfe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class TodoActivity extends AppCompatActivity {
+public class TodoActivity extends BaseActivity {
 
     TextView tabToDo, tabDoing, tabDone;
     Button btnSave;
@@ -20,46 +19,53 @@ public class TodoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
 
-        tabToDo  = findViewById(R.id.tabToDo);
-        tabDoing = findViewById(R.id.tabDoing);
-        tabDone  = findViewById(R.id.tabDone);
-        btnSave  = findViewById(R.id.btnSave);
-        etGoal   = findViewById(R.id.etGoal);
-        etTopic  = findViewById(R.id.etTopic);
-        etTime   = findViewById(R.id.etTime);
+        setupNotificationBell();
+        setupBottomNav(1);
+
+        tabToDo       = findViewById(R.id.tabToDo);
+        tabDoing      = findViewById(R.id.tabDoing);
+        tabDone       = findViewById(R.id.tabDone);
+        btnSave       = findViewById(R.id.btnSave);
+        etGoal        = findViewById(R.id.etGoal);
+        etTopic       = findViewById(R.id.etTopic);
+        etTime        = findViewById(R.id.etTime);
         etDescription = findViewById(R.id.etDescription);
 
-        // ✅ Tab TO DO - نحن هنا بالفعل
-        tabToDo.setOnClickListener(v -> {
-            // نحن بالفعل هنا، لا شيء
-        });
-
-        // ✅ Tab DOING - ننتقل لـ DoingActivity
+        tabToDo.setOnClickListener(v -> {});
         tabDoing.setOnClickListener(v -> {
             startActivity(new Intent(this, DoingActivity.class));
             finish();
         });
-
-        // ✅ Tab DONE - ننتقل لـ DoneActivity
         tabDone.setOnClickListener(v -> {
             startActivity(new Intent(this, DoneActivity.class));
             finish();
         });
 
-        // ✅ زر SAVE - ننتقل لـ TodoAiActivity
         btnSave.setOnClickListener(v -> {
-            String goal = etGoal.getText().toString().trim();
+            String goal        = etGoal.getText().toString().trim();
+            String topic       = etTopic.getText().toString().trim();
+            String time        = etTime.getText().toString().trim();
+            String description = etDescription.getText().toString().trim();
+
             if (goal.isEmpty()) {
                 Toast.makeText(this, "Please enter a goal!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            startActivity(new Intent(this, TodoAiActivity.class));
-        });
 
-        // ✅ نفس الشيء في TodoAiActivity
-        ImageView ivMoreOptions = findViewById(R.id.ivMoreOptions);
-        ivMoreOptions.setOnClickListener(v -> {
-            // لاحقاً - واجهة الإعدادات
+            // حفظ البيانات
+            getSharedPreferences("todo_data", MODE_PRIVATE).edit()
+                    .putString("goal", goal)
+                    .putString("topic", topic)
+                    .putString("time", time)
+                    .putString("description", description)
+                    .apply();
+
+            // تحديث عداد المهام
+            SharedPreferences stats = getSharedPreferences("task_stats", MODE_PRIVATE);
+            int count = stats.getInt("todo_count", 0);
+            stats.edit().putInt("todo_count", count + 1).apply();
+
+            startActivity(new Intent(this, TodoAiActivity.class));
         });
     }
 }
