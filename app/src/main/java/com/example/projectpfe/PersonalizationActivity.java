@@ -11,6 +11,7 @@ public class PersonalizationActivity extends AppCompatActivity {
 
     Button btnNext;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

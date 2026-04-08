@@ -96,7 +96,7 @@
                         android:id="@+id/tvProfileName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rayane Bnhn"
+                        android:text=""
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -129,19 +129,18 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginTop="4dp">
-
-
                         <ImageView
+
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:src="@drawable/ic_sparkle"
                             app:tint="#00E5FF" />
-
                         <TextView
+                            android:id="@+id/tvProfileGrade"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
-                            android:text="Tier 3 Graduate"
+                            android:text=""
                             android:textColor="#00E5FF"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -195,18 +194,20 @@
 
                 <!-- CONSCIENTIOUSNESS 88% -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <TextView android:id="@+id/tvConscientiousnessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="CONSCIENTIOUSNESS" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentEnd="true" android:text="%"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/progressConscientiousness"
                         android:layout_width="match_parent" android:layout_height="6dp"
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
@@ -214,18 +215,20 @@
 
                 <!-- AGREEABLENESS 64% -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <TextView android:id="@+id/tvAgreeablenessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="AGREEABLENESS" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentEnd="true" android:text="%"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/progressAgreeableness"
                         android:layout_width="match_parent" android:layout_height="6dp"
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
@@ -233,18 +236,20 @@
 
                 <!-- EXTRAVERSION 72% -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <TextView android:id="@+id/tvExtraversionValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="EXTRAVERSION" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentEnd="true" android:text="%"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/progressExtraversion"
                         android:layout_width="match_parent" android:layout_height="6dp"
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
@@ -252,37 +257,47 @@
 
                 <!-- NEUROTICISM 41% -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <TextView android:id="@+id/tvNeuroticismValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="NEUROTICISM" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true" android:text="41%"
+                            android:layout_alignParentEnd="true" android:text="%"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/progressNeuroticism"
                         android:layout_width="match_parent" android:layout_height="6dp"
-                        android:layout_marginTop="6dp" android:progress="41"
+                        android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
 
                 <!-- OPENNESS 95% -->
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
                     <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        <TextView    android:id="@+id/tvOpennessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="OPENNESS" android:textColor="#888899" android:textSize="11sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
+                            android:text="%"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
+                        android:id="@+id/progressOpenness"
                         android:layout_width="match_parent" android:layout_height="6dp"
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
@@ -323,7 +338,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="92%"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="ATTEMPT RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -342,7 +357,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="88%"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="SUCCESS RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -360,7 +375,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="75%"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="PERSISTENCE TIME" android:textColor="#666680" android:textSize="10sp"/>
@@ -377,7 +392,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="65%"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="DIFFICULTY HANDLING" android:textColor="#666680" android:textSize="10sp"/>

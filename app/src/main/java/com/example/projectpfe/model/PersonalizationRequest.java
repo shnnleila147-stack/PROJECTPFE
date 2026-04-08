@@ -11,6 +11,7 @@ public class PersonalizationRequest {
     public void setQ4(int q4) { this.q4 = q4; }
     public void setQ5(int q5) { this.q5 = q5; }
 
+
     // إضافة Getters إذا احتجت لاحقاً
     public int getUserId() { return userId; }
     public int getQ1() { return q1; }

@@ -3,8 +3,11 @@ package com.example.projectpfe.api;
 import com.example.projectpfe.model.PersonalizationRequest;
 import com.example.projectpfe.model.User;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -23,4 +26,4 @@ public interface ApiService {
     // ✅ الجديد (مهم)
     @PUT("api/users/{id}/personalized")
     Call<User> setPersonalized(@Path("id") int id);
-}
+  }

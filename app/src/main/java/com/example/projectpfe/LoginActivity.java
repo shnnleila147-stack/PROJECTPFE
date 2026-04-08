@@ -1,12 +1,12 @@
 package com.example.projectpfe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
-import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,7 +68,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
-
         binding.btnLogin.setOnClickListener(v -> {
             String email = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();
@@ -82,22 +81,18 @@ public class LoginActivity extends AppCompatActivity {
             User user = new User(email, password);
 
             apiService.login(user).enqueue(new Callback<User>() {
-
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if (response.isSuccessful() && response.body() != null) {
                         User loggedUser = response.body();
 
-                        // ✅ حفظ userId
+                        // ✅ حفظ userId في SharedPreferences
                         getSharedPreferences("user", MODE_PRIVATE)
                                 .edit()
-                                .putInt("user_id", loggedUser.getId())
+                                .putLong("user_id", loggedUser.getId())
                                 .apply();
 
-
-
-
-                        // ✅ التوجيه الصحيح
+                        // ✅ التوجيه الصحيح حسب التخصيص
                         if (loggedUser.isPersonalized()) {
                             // مستخدم قديم أكمل التخصيص → Home
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
@@ -106,8 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, PersonalizationActivity.class));
                         }
 
-                        finish(); // ✅ finish() مرة واحدة فقط (كانت مكررة مرتين في الأصل)
-
+                        finish(); // ✅ إغلاق LoginActivity بعد الانتقال
                     } else {
                         Toast.makeText(LoginActivity.this, "Wrong email/password", Toast.LENGTH_SHORT).show();
                     }
@@ -120,13 +114,19 @@ public class LoginActivity extends AppCompatActivity {
             });
         });
 
-        binding.tvForgot.setOnClickListener(v -> {});
+        binding.tvForgot.setOnClickListener(v -> {
+            // يمكنك إضافة نداء إعادة تعيين كلمة المرور هنا
+        });
 
         binding.tvSignUp.setOnClickListener(v -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
-        binding.btnGoogle.setOnClickListener(v -> {});
-        binding.btnApple.setOnClickListener(v -> {});
+        binding.btnGoogle.setOnClickListener(v -> {
+            // تسجيل الدخول عبر Google
+        });
+        binding.btnApple.setOnClickListener(v -> {
+            // تسجيل الدخول عبر Apple
+        });
     }
 }

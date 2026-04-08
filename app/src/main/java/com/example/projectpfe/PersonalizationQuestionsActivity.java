@@ -21,6 +21,7 @@ import retrofit2.Response;
 
 public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
+
     private String[] questions = {
             "How satisfied are you with your current study-life balance?",
             "How well do you manage your time for studying?",
