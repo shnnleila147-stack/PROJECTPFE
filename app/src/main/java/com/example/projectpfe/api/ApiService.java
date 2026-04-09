@@ -26,4 +26,9 @@ public interface ApiService {
     // ✅ الجديد (مهم)
     @PUT("api/users/{id}/personalized")
     Call<User> setPersonalized(@Path("id") int id);
-  }
+
+
+    @POST("/api/personalization/save-and-personalize")
+    Call<Void> saveAnswersAndSetPersonalized(@Body PersonalizationRequest request);
+
+}

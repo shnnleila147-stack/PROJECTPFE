@@ -2,6 +2,7 @@ package com.example.projectpfe;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,14 +14,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.projectpfe.api.ApiClient;
 import com.example.projectpfe.api.ApiService;
 import com.example.projectpfe.model.PersonalizationRequest;
-import com.example.projectpfe.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PersonalizationQuestionsActivity extends AppCompatActivity {
-
 
     private String[] questions = {
             "How satisfied are you with your current study-life balance?",
@@ -31,11 +30,11 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     };
 
     private int currentQuestion = 0;
-    private final int totalQuestions = 5;
+    private final int totalQuestions = questions.length;
     private int[] answers;
     private int selectedAnswer = -1;
-
     private View[] circles;
+
     private TextView tvQuestion;
     private TextView tvQuestionIndicator;
     private AppCompatButton btnBack;
@@ -43,6 +42,7 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("PERS_QS", "PersonalizationQuestionsActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalization_questions);
 
@@ -75,7 +75,7 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
         displayQuestion();
 
-        // سهم الرجوع
+        // زر العودة السهم
         ivBack.setOnClickListener(v -> finish());
 
         // زر BACK
@@ -92,7 +92,9 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
         // زر NEXT
         btnNext.setOnClickListener(v -> {
+            Log.d("PERS_QS", "Next button clicked. Current question: " + currentQuestion);
             if (selectedAnswer == -1) {
+                Log.d("PERS_QS", "No answer selected!");
                 Toast.makeText(this, "Please select an answer", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -104,7 +106,9 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
                 currentQuestion++;
                 selectedAnswer = answers[currentQuestion];
                 displayQuestion();
+                Log.d("PERS_QS", "Moved to question: " + currentQuestion);
             } else {
+                Log.d("PERS_QS", "Last question reached, sending answers to server");
                 // نهاية الأسئلة → إرسال البيانات
                 sendAnswersToServer();
             }
@@ -114,7 +118,7 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     private void displayQuestion() {
         tvQuestion.setText(questions[currentQuestion]);
         tvQuestionIndicator.setText("Question " + (currentQuestion + 1) + " of " + totalQuestions);
-        selectedAnswer = answers[currentQuestion]; // تحديث المحدد
+        selectedAnswer = answers[currentQuestion];
         updateCircles();
     }
 
@@ -134,17 +138,18 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     }
 
     private void sendAnswersToServer() {
-
-        PersonalizationRequest request = new PersonalizationRequest();
-
-        int userId = getSharedPreferences("user", MODE_PRIVATE)
-                .getInt("user_id", -1);
+        Log.d("PERS_QS", "sendAnswersToServer called");
+        long userId = getSharedPreferences("user", MODE_PRIVATE)
+                .getLong("user_id", -1);
+        Log.d("PERS_QS", "Retrieved userId: " + userId);
 
         if (userId == -1) {
+            Log.e("PERS_QS", "User not found in SharedPreferences!");
             Toast.makeText(this, "User not found!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        PersonalizationRequest request = new PersonalizationRequest();
         request.setUserId(userId);
         request.setQ1(answers[0] + 1);
         request.setQ2(answers[1] + 1);
@@ -153,50 +158,32 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
         request.setQ5(answers[4] + 1);
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
-        // ✅ 1. نحفظ الإجابات
-        apiService.saveAnswers(request).enqueue(new Callback<Void>() {
+        apiService.saveAnswersAndSetPersonalized(request).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
+                Log.d("PERS_QS", "API response received. Success: " + response.isSuccessful());
                 if (response.isSuccessful()) {
+                    // حفظ العلم locally
+                    getSharedPreferences("user", MODE_PRIVATE).edit()
+                            .putBoolean("is_personalized", true)
+                            .apply();
 
-                    // ✅ 2. نحدث personalization = true
-                    apiService.setPersonalized(userId).enqueue(new Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
+                    Log.d("PERS_QS", "Answers saved successfully, isPersonalized set to true");
 
-                            if (response.isSuccessful()) {
-                                Toast.makeText(PersonalizationQuestionsActivity.this,
-                                        "", Toast.LENGTH_SHORT).show();
-
-                                // ✅ 3. نروح Home
-                                startActivity(new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class));
-                                finish();
-
-                            } else {
-                                Toast.makeText(PersonalizationQuestionsActivity.this,
-                                        "Error updating user", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-                            Toast.makeText(PersonalizationQuestionsActivity.this,
-                                    "Server error", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
+                    Intent intent = new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(PersonalizationQuestionsActivity.this,
-                            "Error saving answers", Toast.LENGTH_SHORT).show();
+                    Log.e("PERS_QS", "Error saving answers, code: " + response.code());
+                    Toast.makeText(PersonalizationQuestionsActivity.this, "Error saving answers", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(PersonalizationQuestionsActivity.this,
-                        "Network error", Toast.LENGTH_LONG).show();
+                Log.e("PERS_QS", "Network failure: " + t.getMessage());
+                Toast.makeText(PersonalizationQuestionsActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -45,11 +45,11 @@ public class TodoAiActivity extends BaseActivity {
         tabDone        = findViewById(R.id.tabDone);
         btnChoosePlan1 = findViewById(R.id.btnChoosePlan1);
         btnChoosePlan2 = findViewById(R.id.btnChoosePlan2);
-        tvPlan1Title   = findViewById(R.id.tvPlan1Title);
-        tvPlan1Desc    = findViewById(R.id.tvPlan1Desc);
-        tvPlan2Title   = findViewById(R.id.tvPlan2Title);
-        tvPlan2Desc    = findViewById(R.id.tvPlan2Desc);
-        progressBar    = findViewById(R.id.progressBarAi);
+        //tvPlan1Title   = findViewById(R.id.tvPlan1Title);
+        //tvPlan1Desc    = findViewById(R.id.tvPlan1Desc);
+       // tvPlan2Title   = findViewById(R.id.tvPlan2Title);
+       // tvPlan2Desc    = findViewById(R.id.tvPlan2Desc);
+       // progressBar    = findViewById(R.id.progressBarAi);
 
         // Tabs
         tabToDo.setOnClickListener(v -> {

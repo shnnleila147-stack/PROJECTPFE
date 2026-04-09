@@ -203,7 +203,7 @@
                         <TextView android:id="@+id/tvConscientiousnessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="CONSCIENTIOUSNESS" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true" android:text="%"
+                            android:layout_alignParentEnd="true"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
@@ -224,7 +224,7 @@
                         <TextView android:id="@+id/tvAgreeablenessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="AGREEABLENESS" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true" android:text="%"
+                            android:layout_alignParentEnd="true"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
@@ -245,7 +245,7 @@
                         <TextView android:id="@+id/tvExtraversionValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="EXTRAVERSION" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true" android:text="%"
+                            android:layout_alignParentEnd="true"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
@@ -266,7 +266,7 @@
                         <TextView android:id="@+id/tvNeuroticismValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
                             android:text="NEUROTICISM" android:textColor="#888899" android:textSize="11sp"/>
                         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true" android:text="%"
+                            android:layout_alignParentEnd="true"
                             android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
@@ -291,7 +291,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:text="%"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -338,7 +337,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="8dp" android:text="92%"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="ATTEMPT RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -357,7 +356,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="8dp" android:text="88%"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="SUCCESS RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -375,7 +374,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="8dp" android:text="75%"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="PERSISTENCE TIME" android:textColor="#666680" android:textSize="10sp"/>
@@ -392,7 +391,7 @@
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="8dp" android:text="65%"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="DIFFICULTY HANDLING" android:textColor="#666680" android:textSize="10sp"/>

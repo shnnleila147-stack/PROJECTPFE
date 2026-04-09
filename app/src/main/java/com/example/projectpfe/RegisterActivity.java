@@ -17,8 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.projectpfe.databinding.ActivityRegisterBinding;
-
-// ✅ Imports الجديدة
 import com.example.projectpfe.api.ApiClient;
 import com.example.projectpfe.api.ApiService;
 import com.example.projectpfe.model.User;
@@ -135,6 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding.ivBack.setOnClickListener(v -> finish());
 
         binding.btnCreateAccount.setOnClickListener(v -> {
+
             String fullName = binding.etFullName.getText().toString().trim();
             String email = binding.etEmail.getText().toString().trim();
             String password = binding.etPassword.getText().toString().trim();
@@ -162,25 +161,35 @@ public class RegisterActivity extends AppCompatActivity {
                 return;
             }
 
-            // ✅ الكود الجديد (Backend)
+            // ⭐⭐ الحل هنا ⭐⭐
+            String selectedGrade = binding.spinnerGrade.getSelectedItem().toString();
+
             ApiService apiService = ApiClient.getService();
 
             User user = new User(email, password);
-
+            user.setName(fullName);        // ✅ مهم جداً
+            user.setGrade(selectedGrade);  // ✅ مهم جداً
 
             apiService.register(user).enqueue(new Callback<User>() {
 
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful() && response.body() != null) {
 
                         showToast("Account created successfully!");
 
                         Intent intent = new Intent(RegisterActivity.this, PersonalizationActivity.class);
                         startActivity(intent);
 
+                        finish();
+                        User registeredUser = response.body();
+                        getSharedPreferences("user", MODE_PRIVATE)
+                                .edit()
+                                .putLong("user_id", registeredUser.getId())
+                                .apply();
+
                     } else {
-                        showToast("Registration failed");
+                        showToast("Error: " + response.code());
                     }
                 }
 
