@@ -7,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.JSONObject;
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import org.json.JSONObject;
 
 public class TodoActivity extends BaseActivity {
 
@@ -42,6 +47,7 @@ public class TodoActivity extends BaseActivity {
         });
 
         btnSave.setOnClickListener(v -> {
+
             String goal        = etGoal.getText().toString().trim();
             String topic       = etTopic.getText().toString().trim();
             String time        = etTime.getText().toString().trim();
@@ -52,20 +58,48 @@ public class TodoActivity extends BaseActivity {
                 return;
             }
 
-            // حفظ البيانات
-            getSharedPreferences("todo_data", MODE_PRIVATE).edit()
-                    .putString("goal", goal)
-                    .putString("topic", topic)
-                    .putString("time", time)
-                    .putString("description", description)
-                    .apply();
+            // ✅ جلب userId
+            SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
+            long userId = prefs.getLong("user_id", -1);
 
-            // تحديث عداد المهام
-            SharedPreferences stats = getSharedPreferences("task_stats", MODE_PRIVATE);
-            int count = stats.getInt("todo_count", 0);
-            stats.edit().putInt("todo_count", count + 1).apply();
+            // ✅ إنشاء JSON
+            JSONObject json = new JSONObject();
+            try {
+                json.put("userId", userId);
+                json.put("goal", goal);
+                json.put("topic", topic);
+                json.put("time", time);
+                json.put("description", description);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            startActivity(new Intent(this, TodoAiActivity.class));
+            // ⚠️ غيري IP حسب جهازك
+            String url = "http://192.168.1.25:8080/api/todo";
+
+            JsonObjectRequest request = new JsonObjectRequest(
+                    Request.Method.POST,
+                    url,
+                    json,
+
+                    response -> {
+                        Toast.makeText(this, "Saved successfully!", Toast.LENGTH_SHORT).show();
+
+                        // ✅ نمرر البيانات لـ ToDoAI
+                        Intent intent = new Intent(this, TodoAiActivity.class);
+                        intent.putExtra("goal", goal);
+                        intent.putExtra("topic", topic);
+                        intent.putExtra("time", time);
+                        intent.putExtra("description", description);
+                        startActivity(intent);
+                    },
+
+                    error -> {
+                        error.printStackTrace();
+                        Toast.makeText(this, "Error saving!", Toast.LENGTH_SHORT).show();
+                    }
+            );
+
+            Volley.newRequestQueue(this).add(request);
         });
-    }
-}
+}}
