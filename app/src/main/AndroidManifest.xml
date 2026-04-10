@@ -34,6 +34,8 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".NotificationsActivity"/>
         <activity android:name=".CommunityActivity" />
+        <activity android:name=".GroupChatActivity" />
+
     </application>
 
 </manifest>

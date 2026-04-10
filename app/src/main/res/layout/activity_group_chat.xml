@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="12dp"
+        android:background="#0A0A0F">
+
+        <!-- زر الرجوع -->
+
+        <!-- اسم المجموعة + عدد الأعضاء -->
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#00E5FF" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+        </LinearLayout>
+
+        <!-- أيقونة الفيديو -->
+
+        <!-- أيقونة الإعدادات -->
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="62dp"
+            android:src="@drawable/ic_clock"
+            app:tint="#666680" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_expand"
+            app:tint="#666680" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 members online"
+            android:textColor="#00E5FF"
+            android:textSize="11sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Math – Bac 2024"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- المحادثة -->
+    <ScrollView
+        android:id="@+id/scrollChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:layout_above="@+id/inputBar"
+        android:scrollbars="none"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- TODAY -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="TODAY"
+                android:textColor="#444455"
+                android:textSize="11sp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- رسالة Lukas M. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lukas M."
+                    android:textColor="#666680"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top">
+
+                    <!-- Avatar -->
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="#666680" />
+
+                    <!-- فقاعة الرسالة -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/bg_card_rounded"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Has anyone finished the exercises on complex numbers from Chapter 4? I'm stuck on problem 7."
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:lineSpacingMultiplier="1.4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="4dp"
+                            android:text="10:42 AM"
+                            android:textColor="#444455"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- رسالة أنا (يمين - سيان) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_my_message"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:maxWidth="240dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yeah, I just did that one! You need to apply the Moivre formula first to simplify the exponent."
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:lineSpacingMultiplier="1.4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:text="10:40 AM ✓✓"
+                        android:textColor="#004444"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- رسالة Sarah Chen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sarah Chen"
+                    android:textColor="#666680"
+                    android:textSize="11sp"
+                    android:layout_marginBottom="4dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="top">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_card_dark_rounded"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="#00E5FF" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+
+                        <!-- صورة رياضيات -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_card_dark_rounded"
+                            android:padding="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_card_rounded"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="I found this visual explanation really helpful for that specific problem."
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
+                                android:lineSpacingMultiplier="1.4" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginTop="4dp"
+                                android:text="10:47 AM"
+                                android:textColor="#444455"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:gravity="center"
+                            android:text="  X\n\n←——→\n\n  ."
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- رسالتي الثانية -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_my_message"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="That's perfect, Sarah! Thanks."
+                        android:textColor="#000000"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:text="10:48 AM ✓✓"
+                        android:textColor="#004444"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Marc is typing... -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="••• Marc is typing..."
+                android:textColor="#444455"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Input Bar -->
+    <RelativeLayout
+        android:id="@+id/inputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#0A0A0F"
+        android:padding="12dp">
+
+        <!-- زر + -->
+        <ImageView
+            android:id="@+id/ivAttach"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_card_dark_rounded"
+            android:padding="8dp"
+            android:src="@drawable/ic_add"
+            app:tint="#666680" />
+
+        <!-- حقل الكتابة -->
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_toEndOf="@id/ivAttach"
+            android:layout_toStartOf="@+id/btnSendMsg"
+            android:layout_marginHorizontal="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/input_field_bg"
+            android:hint="Type your message..."
+            android:textColorHint="#333344"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:paddingHorizontal="14dp"
+            android:inputType="text" />
+
+        <!-- زر الإيموجي -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_toStartOf="@+id/btnSendMsg"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_sparkle"
+            app:tint="#444455" />
+
+        <!-- زر الإرسال -->
+        <ImageView
+            android:id="@+id/btnSendMsg"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_save"
+            android:padding="10dp"
+            android:src="@drawable/ic_expand"
+            app:tint="#000000" />
+    </RelativeLayout>
+
+</RelativeLayout>

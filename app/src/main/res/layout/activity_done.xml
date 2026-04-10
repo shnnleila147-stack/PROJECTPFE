@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/tabToDo"
-            android:layout_width="122dp"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:background="@drawable/tab_inactive_bg"
@@ -60,7 +60,7 @@
 
         <TextView
             android:id="@+id/tabDoing"
-            android:layout_width="146dp"
+            android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:background="@drawable/tab_inactive_bg"
@@ -74,13 +74,13 @@
 
         <TextView
             android:id="@+id/tabDone"
-            android:layout_width="130dp"
+            android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:background="@drawable/tab_active_bg"
             android:gravity="center"
             android:paddingHorizontal="16dp"
             android:paddingVertical="10dp"
-            android:text="DANE"
+            android:text="DONE"
             android:textColor="#00E5FF"
             android:textSize="13sp"
             android:textStyle="bold" />
