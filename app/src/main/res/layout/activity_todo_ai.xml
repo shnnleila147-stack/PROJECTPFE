@@ -85,7 +85,12 @@
             android:textSize="13sp"
             android:textStyle="bold" />
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBarAi"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
     <!-- ===== المحتوى القابل للتمرير ===== -->
     <ScrollView
         android:layout_width="match_parent"
@@ -130,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="AI Recommended\nPlan"
+                android:text="AI Advised Plan"
                 android:textColor="#FFFFFF"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -175,7 +180,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="STRATEGIC"
                         android:textColor="#00E5FF"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -186,20 +190,21 @@
 
                 <!-- عنوان البطاقة -->
                 <TextView
+                    android:id="@+id/tvPlan1Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Plan 1: Focused Concept"
+
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <!-- وصف البطاقة -->
                 <TextView
+                    android:id="@+id/tvPlan1Desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Designed for deep cognitive immersion. Minimizes context switching to maximize creative or analytical output."
                     android:textColor="#666680"
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.4" />
@@ -227,11 +232,11 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan1Step1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="90-minute hyper-focus blocks for core conceptual development."
                         android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
@@ -253,11 +258,11 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan1Step2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="Digital blackouts during execution phases (Zero notifications)."
                         android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
@@ -279,12 +284,12 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan1Step3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="Single-variable tracking for progress clarity."
-                        android:textColor="#AAAACC"
+                         android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
                 </LinearLayout>
@@ -332,7 +337,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="AGILE"
                         android:textColor="#00E5FF"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -343,20 +347,20 @@
 
                 <!-- عنوان البطاقة -->
                 <TextView
+                    android:id="@+id/tvPlan2Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Plan 2: Micro-Step"
-                    android:textColor="#FFFFFF"
+                   android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <!-- وصف البطاقة -->
                 <TextView
+                    android:id="@+id/tvPlan2Desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Optimized for momentum building. Deconstructs complex barriers into friction-less atomic actions."
                     android:textColor="#666680"
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.4" />
@@ -384,11 +388,11 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan2Step1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="20-minute interval sprints followed by 5-minute recalibration."
                         android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
@@ -410,12 +414,12 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan2Step2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="Immediate dopamine reward loops for sub-task completion."
-                        android:textColor="#AAAACC"
+                       android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
                 </LinearLayout>
@@ -436,12 +440,12 @@
                         app:tint="#00E5FF" />
 
                     <TextView
+                        android:id="@+id/tvPlan2Step3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
-                        android:text="Parallel processing of administrative and tactical duties."
-                        android:textColor="#AAAACC"
+                         android:textColor="#AAAACC"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.3" />
                 </LinearLayout>
@@ -460,51 +464,8 @@
                     app:backgroundTint="@null" />
             </LinearLayout>
 
-            <!-- ============================
-                 Plan Analytics Preview
-                 ============================ -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <!-- أيقونة الروبوت -->
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/bg_card_dark_rounded"
-                    android:padding="14dp"
-                    android:src="@drawable/ic_robot"
-                    app:tint="#00E5FF" />
-
-                <!-- عنوان Analytics -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Plan Analytics Preview"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-
-                <!-- النص التنبؤي -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Predicted success rate: 94.2% based on your recent peak productivity windows (14:00 - 17:00)."
-                    android:textColor="#666680"
-                    android:textSize="13sp"
-                    android:gravity="center"
-                    android:lineSpacingMultiplier="1.4"
-                    android:paddingHorizontal="16dp" />
-
-            </LinearLayout>
-
         </LinearLayout>
+
     </ScrollView>
 
     <!-- ===== Bottom Navigation Bar ===== -->

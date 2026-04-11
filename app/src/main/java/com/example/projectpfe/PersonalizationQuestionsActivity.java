@@ -28,7 +28,29 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
             "How motivated are you to achieve your goals?",
             "How comfortable are you with asking for help?"
     };
+    // ✅ تحديد الشخصية (بسيط مؤقت)
+    private String getPersonalityType() {
+        int sum = 0;
+        for (int a : answers) {
+            sum += a;
+        }
 
+        if (sum >= 15) return "organized";
+        else if (sum >= 10) return "balanced";
+        else return "needs_guidance";
+    }
+
+    // ✅ تحديد الجدول
+    private String getScheduleType() {
+        int avg = 0;
+        for (int a : answers) {
+            avg += a;
+        }
+        avg = avg / answers.length;
+
+        if (avg >= 3) return "busy";
+        else return "flexible";
+    }
     private int currentQuestion = 0;
     private final int totalQuestions = questions.length;
     private int[] answers;
@@ -159,23 +181,27 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.saveAnswersAndSetPersonalized(request).enqueue(new Callback<Void>() {
+
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.d("PERS_QS", "API response received. Success: " + response.isSuccessful());
                 if (response.isSuccessful()) {
-                    // حفظ العلم locally
+
+                    // ✅ حفظ isPersonalized
                     getSharedPreferences("user", MODE_PRIVATE).edit()
                             .putBoolean("is_personalized", true)
                             .apply();
 
-                    Log.d("PERS_QS", "Answers saved successfully, isPersonalized set to true");
+                    // ✅ ⭐ الحل المهم: تخزين بيانات الشخصية محليًا
+                    getSharedPreferences("profile_data", MODE_PRIVATE).edit()
+                            .putString("personality_type", getPersonalityType())
+                            .putString("student_schedule", getScheduleType())
+                            .apply();
 
                     Intent intent = new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 } else {
-                    Log.e("PERS_QS", "Error saving answers, code: " + response.code());
                     Toast.makeText(PersonalizationQuestionsActivity.this, "Error saving answers", Toast.LENGTH_SHORT).show();
                 }
             }
