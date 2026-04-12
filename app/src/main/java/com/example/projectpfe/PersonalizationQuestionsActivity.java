@@ -160,19 +160,18 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
     }
 
     private void sendAnswersToServer() {
-        Log.d("PERS_QS", "sendAnswersToServer called");
+
         long userId = getSharedPreferences("user", MODE_PRIVATE)
                 .getLong("user_id", -1);
-        Log.d("PERS_QS", "Retrieved userId: " + userId);
 
         if (userId == -1) {
-            Log.e("PERS_QS", "User not found in SharedPreferences!");
-            Toast.makeText(this, "User not found!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_LONG).show();
             return;
         }
 
         PersonalizationRequest request = new PersonalizationRequest();
         request.setUserId(userId);
+
         request.setQ1(answers[0] + 1);
         request.setQ2(answers[1] + 1);
         request.setQ3(answers[2] + 1);
@@ -180,36 +179,39 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
         request.setQ5(answers[4] + 1);
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
+
         apiService.saveAnswersAndSetPersonalized(request).enqueue(new Callback<Void>() {
 
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+
                 if (response.isSuccessful()) {
 
-                    // ✅ حفظ isPersonalized
-                    getSharedPreferences("user", MODE_PRIVATE).edit()
+                    getSharedPreferences("user", MODE_PRIVATE)
+                            .edit()
                             .putBoolean("is_personalized", true)
                             .apply();
 
-                    // ✅ ⭐ الحل المهم: تخزين بيانات الشخصية محليًا
-                    getSharedPreferences("profile_data", MODE_PRIVATE).edit()
-                            .putString("personality_type", getPersonalityType())
-                            .putString("student_schedule", getScheduleType())
-                            .apply();
+                    Intent intent = new Intent(
+                            PersonalizationQuestionsActivity.this,
+                            HomeActivity.class
+                    );
 
-                    Intent intent = new Intent(PersonalizationQuestionsActivity.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
+
                 } else {
-                    Toast.makeText(PersonalizationQuestionsActivity.this, "Error saving answers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PersonalizationQuestionsActivity.this,
+                            "Server error", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Log.e("PERS_QS", "Network failure: " + t.getMessage());
-                Toast.makeText(PersonalizationQuestionsActivity.this, "Network error: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(PersonalizationQuestionsActivity.this,
+                        "Network error: " + t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }

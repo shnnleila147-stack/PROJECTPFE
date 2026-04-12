@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
                                 .edit()
                                 .putLong("user_id", loggedUser.getId())
                                 .apply();
-
                         // ✅ التوجيه الصحيح حسب التخصيص
                         if (loggedUser.isPersonalized()) {
                             // مستخدم قديم أكمل التخصيص → Home
@@ -129,4 +128,5 @@ public class LoginActivity extends AppCompatActivity {
             // تسجيل الدخول عبر Apple
         });
     }
+
 }

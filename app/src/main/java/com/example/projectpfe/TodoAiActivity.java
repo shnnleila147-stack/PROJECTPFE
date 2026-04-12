@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -25,8 +26,8 @@ public class TodoAiActivity extends BaseActivity {
     TextView tvPlan2Step1, tvPlan2Step2, tvPlan2Step3;
     ProgressBar progressBar;
 
-    // ✅ ضعي مفتاح Claude API هنا
-    private static final String CLAUDE_API_KEY = "YOUR_CLAUDE_API_KEY_HERE";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,76 +93,77 @@ public class TodoAiActivity extends BaseActivity {
         SharedPreferences todoPrefs = getSharedPreferences("todo_data", MODE_PRIVATE);
         SharedPreferences profilePrefs = getSharedPreferences("profile_data", MODE_PRIVATE);
 
-        String goal        = todoPrefs.getString("goal", "");
-        String topic       = todoPrefs.getString("topic", "");
-        String time        = todoPrefs.getString("time", "");
+        String goal = todoPrefs.getString("goal", "");
+        String topic = todoPrefs.getString("topic", "");
+        String time = todoPrefs.getString("time", "");
         String description = todoPrefs.getString("description", "");
         String personality = profilePrefs.getString("personality_type", "");
-        String schedule    = profilePrefs.getString("student_schedule", "");
+        String schedule = profilePrefs.getString("student_schedule", "");
 
-        if (progressBar != null) progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 
-        JSONObject json = new JSONObject();
         try {
+            JSONObject json = new JSONObject();
             json.put("goal", goal);
             json.put("topic", topic);
             json.put("time", time);
             json.put("description", description);
             json.put("personality", personality);
             json.put("schedule", schedule);
-        } catch (Exception e) {
 
-            return;
-        }
+            String url = "http://192.168.1.12:8080/api/ai/generate-plans";
 
-        String url = "http://192.168.1.25:8080/api/ai/generate-plans"; // ✅ مهم
+            JsonObjectRequest request = new JsonObjectRequest(
+                    com.android.volley.Request.Method.POST,
+                    url,
+                    json,
 
-        JsonObjectRequest request = new JsonObjectRequest(
-                com.android.volley.Request.Method.POST,
-                url,
-                json,
+                    response -> {
 
-                response -> {
-                    System.out.println("RESPONSE: " + response.toString());
-                    if (progressBar != null) progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
 
-                    try {
-                        JSONObject plan1 = response.getJSONObject("plan1");
-                        JSONObject plan2 = response.getJSONObject("plan2");
+                        try {
+                            System.out.println("RESPONSE: " + response);
 
-// PLAN 1
-                        tvPlan1Title.setText(plan1.getString("title"));
-                        tvPlan1Desc.setText(plan1.getString("description"));
+                            JSONObject plan1 = response.getJSONObject("plan1");
+                            JSONObject plan2 = response.getJSONObject("plan2");
 
-                        JSONArray p1Steps = plan1.getJSONArray("steps");
-                        tvPlan1Step1.setText("• " + p1Steps.getString(0));
-                        tvPlan1Step2.setText("• " + p1Steps.getString(1));
-                        tvPlan1Step3.setText("• " + p1Steps.getString(2));
+                            tvPlan1Title.setText(plan1.getString("title"));
+                            tvPlan1Desc.setText(plan1.getString("description"));
 
-// PLAN 2
-                        tvPlan2Title.setText(plan2.getString("title"));
-                        tvPlan2Desc.setText(plan2.getString("description"));
+                            JSONArray p1Steps = plan1.getJSONArray("steps");
+                            tvPlan1Step1.setText("• " + p1Steps.getString(0));
+                            tvPlan1Step2.setText("• " + p1Steps.getString(1));
+                            tvPlan1Step3.setText("• " + p1Steps.getString(2));
 
-                        JSONArray p2Steps = plan2.getJSONArray("steps");
-                        tvPlan2Step1.setText("• " + p2Steps.getString(0));
-                        tvPlan2Step2.setText("• " + p2Steps.getString(1));
-                        tvPlan2Step3.setText("• " + p2Steps.getString(2));
+                            tvPlan2Title.setText(plan2.getString("title"));
+                            tvPlan2Desc.setText(plan2.getString("description"));
 
+                            JSONArray p2Steps = plan2.getJSONArray("steps");
+                            tvPlan2Step1.setText("• " + p2Steps.getString(0));
+                            tvPlan2Step2.setText("• " + p2Steps.getString(1));
+                            tvPlan2Step3.setText("• " + p2Steps.getString(2));
 
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(this, "JSON Parse Error", Toast.LENGTH_LONG).show();
+                        }
+                    },
 
-                    } catch (Exception e) {
+                    error -> {
+                        progressBar.setVisibility(View.GONE);
 
+                        System.out.println("ERROR: " + error.toString());
+                        Toast.makeText(this, "Network Error", Toast.LENGTH_LONG).show();
                     }
-                },
+            );
 
-                error -> {
-                    if (progressBar != null) progressBar.setVisibility(View.GONE);
-                    System.out.println("ERROR: " + error.toString());
+            Volley.newRequestQueue(this).add(request);
 
-                }
-        );
-
-        Volley.newRequestQueue(this).add(request);
+        } catch (Exception e) {
+            progressBar.setVisibility(View.GONE);
+            e.printStackTrace();
+        }
     }
 
 
