@@ -18,7 +18,6 @@ public class ApiClient {
         return retrofit;
     }
 
-    // ✅ هذه هي الدالة المهمة (غالبًا ناقصة عندك)
     public static ApiService getService() {
         return getClient().create(ApiService.class);
     }

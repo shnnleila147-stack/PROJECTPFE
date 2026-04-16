@@ -14,6 +14,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.example.projectpfe.api.ApiClient;
 import com.example.projectpfe.api.ApiService;
 import com.example.projectpfe.model.PersonalizationRequest;
+import com.example.projectpfe.model.PersonalizationResponse;
+import com.example.projectpfe.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -132,6 +134,7 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
             } else {
                 Log.d("PERS_QS", "Last question reached, sending answers to server");
                 // نهاية الأسئلة → إرسال البيانات
+                Toast.makeText(this, "Analyzing your personality...", Toast.LENGTH_SHORT).show();
                 sendAnswersToServer();
             }
         });
@@ -171,48 +174,83 @@ public class PersonalizationQuestionsActivity extends AppCompatActivity {
 
         PersonalizationRequest request = new PersonalizationRequest();
         request.setUserId(userId);
-
         request.setQ1(answers[0] + 1);
         request.setQ2(answers[1] + 1);
         request.setQ3(answers[2] + 1);
         request.setQ4(answers[3] + 1);
         request.setQ5(answers[4] + 1);
 
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        ApiService apiService = ApiClient.getService();
 
-        apiService.saveAnswersAndSetPersonalized(request).enqueue(new Callback<Void>() {
+        apiService.saveAnswersAndSetPersonalized(request)
+                .enqueue(new Callback<PersonalizationResponse>() {
 
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+                    @Override
+                    public void onResponse(Call<PersonalizationResponse> call,
+                                           Response<PersonalizationResponse> response) {
 
-                if (response.isSuccessful()) {
+                        if (response.isSuccessful()) {
 
-                    getSharedPreferences("user", MODE_PRIVATE)
-                            .edit()
-                            .putBoolean("is_personalized", true)
-                            .apply();
+                            // 🔥 هنا الحل الحقيقي
+                            updateUserPersonalized(userId);
 
-                    Intent intent = new Intent(
-                            PersonalizationQuestionsActivity.this,
-                            HomeActivity.class
-                    );
+                        } else {
+                            Toast.makeText(
+                                    PersonalizationQuestionsActivity.this,
+                                    "Server error",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
 
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    finish();
+                    @Override
+                    public void onFailure(Call<PersonalizationResponse> call, Throwable t) {
+                        Toast.makeText(
+                                PersonalizationQuestionsActivity.this,
+                                "Network error",
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                });
+    }
 
-                } else {
-                    Toast.makeText(PersonalizationQuestionsActivity.this,
-                            "Server error", Toast.LENGTH_SHORT).show();
-                }
-            }
+    private void updateUserPersonalized(long userId) {
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(PersonalizationQuestionsActivity.this,
-                        "Network error: " + t.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
+        ApiService apiService = ApiClient.getService();
+
+        apiService.setUserPersonalized(userId)
+                .enqueue(new Callback<User>() {
+
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+                        if (response.isSuccessful()) {
+
+                            // ✅ حفظ الحالة محليًا
+                            getSharedPreferences("user", MODE_PRIVATE)
+                                    .edit()
+                                    .putBoolean("is_personalized", true)
+                                    .apply();
+
+                            // 🚀 الانتقال إلى Home
+                            Intent intent = new Intent(
+                                    PersonalizationQuestionsActivity.this,
+                                    HomeActivity.class
+                            );
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Toast.makeText(
+                                PersonalizationQuestionsActivity.this,
+                                "Failed to update user",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                });
     }
 }
