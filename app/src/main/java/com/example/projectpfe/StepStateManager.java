@@ -32,7 +32,6 @@ public class StepStateManager {
         running = true;
 
         Log.d("TIMER", "START STEP - elapsed=" + alreadyElapsed);
-
         timerRunnable = new Runnable() {
             @Override
             public void run() {

@@ -370,7 +370,6 @@ public class DoingSessionActivity extends AppCompatActivity {
         return String.format("%02d:%02d", min, sec);
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
