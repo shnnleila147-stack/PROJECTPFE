@@ -82,7 +82,7 @@ public class TodoActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-            String url = "http://192.168.1.12:8080/api/todo";
+            String url = "http://192.168.1.3:8080/api/todo";
 
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,

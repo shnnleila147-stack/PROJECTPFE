@@ -3,7 +3,6 @@ package com.example.projectpfe;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -34,6 +33,8 @@ public class TodoAiActivity extends BaseActivity {
     long userId;
     String topic, goal, time, description;
 
+    JSONObject plan1Data, plan2Data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,16 @@ public class TodoAiActivity extends BaseActivity {
         setupNotificationBell();
         setupBottomNav(1);
 
-        // Views
+        initViews();
+        loadData();
+        setupTabs();
+        generatePlans();
+        setupButtons();
+    }
+
+    // ---------------- INIT VIEWS ----------------
+    private void initViews() {
+
         tabToDo = findViewById(R.id.tabToDo);
         tabDoing = findViewById(R.id.tabDoing);
         tabDone = findViewById(R.id.tabDone);
@@ -63,8 +73,11 @@ public class TodoAiActivity extends BaseActivity {
         tvPlan2Step3 = findViewById(R.id.tvPlan2Step3);
 
         progressBar = findViewById(R.id.progressBarAi);
+    }
 
-        // SharedPreferences
+    // ---------------- LOAD DATA ----------------
+    private void loadData() {
+
         SharedPreferences todoPrefs = getSharedPreferences("todo_data", MODE_PRIVATE);
         SharedPreferences userPrefs = getSharedPreferences("user", MODE_PRIVATE);
 
@@ -77,38 +90,55 @@ public class TodoAiActivity extends BaseActivity {
 
         if (userId == -1) {
             Toast.makeText(this, "User not found", Toast.LENGTH_LONG).show();
-            return;
         }
+    }
 
-        // Tabs
-        tabToDo.setOnClickListener(v -> startActivity(new Intent(this, TodoActivity.class)));
-        tabDoing.setOnClickListener(v -> startActivity(new Intent(this, DoingActivity.class)));
-        tabDone.setOnClickListener(v -> startActivity(new Intent(this, DoneActivity.class)));
+    // ---------------- TABS ----------------
+    private void setupTabs() {
 
-        // Generate plans
-        generatePlans();
+        tabToDo.setOnClickListener(v ->
+                startActivity(new Intent(this, TodoActivity.class)));
 
-        // Buttons
+        tabDoing.setOnClickListener(v ->
+                startActivity(new Intent(this, DoingActivity.class)));
+
+        tabDone.setOnClickListener(v ->
+                startActivity(new Intent(this, DoneActivity.class)));
+    }
+
+    // ---------------- BUTTONS ----------------
+    private void setupButtons() {
+
         btnChoosePlan1.setOnClickListener(v -> {
-            sendFeedback("plan1");
-            startActivity(new Intent(this, DoingActivity.class));
-            finish();
+
+            if (plan1Data == null) {
+                Toast.makeText(this, "Wait for AI plans...", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            choosePlan(plan1Data);
         });
 
         btnChoosePlan2.setOnClickListener(v -> {
-            sendFeedback("plan2");
-            startActivity(new Intent(this, DoingActivity.class));
-            finish();
+
+            if (plan2Data == null) {
+                Toast.makeText(this, "Wait for AI plans...", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            choosePlan(plan2Data);
         });
     }
 
-    // 🔥 Generate Plans
+    // ---------------- GENERATE PLANS ----------------
     private void generatePlans() {
+
         progressBar.setVisibility(View.VISIBLE);
 
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.1.12:8080/api/plan/generate");
+
+                URL url = new URL("http://192.168.1.3:8080/api/plan/generate");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");
@@ -123,7 +153,6 @@ public class TodoAiActivity extends BaseActivity {
 
                 OutputStream os = conn.getOutputStream();
                 os.write(body.toString().getBytes());
-                os.flush();
                 os.close();
 
                 Scanner scanner = new Scanner(conn.getInputStream());
@@ -137,6 +166,7 @@ public class TodoAiActivity extends BaseActivity {
 
             } catch (Exception e) {
                 e.printStackTrace();
+
                 runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(this, "Network error", Toast.LENGTH_LONG).show();
@@ -145,25 +175,26 @@ public class TodoAiActivity extends BaseActivity {
         }).start();
     }
 
-    // 🔥 Parse JSON
+    // ---------------- PARSE RESPONSE ----------------
     private void parseResponse(String response) {
+
         try {
             JSONObject json = new JSONObject(response);
 
-            JSONObject plan1 = json.getJSONObject("plan1");
-            JSONObject plan2 = json.getJSONObject("plan2");
+            plan1Data = json.getJSONObject("plan1");
+            plan2Data = json.getJSONObject("plan2");
 
-            tvPlan1Title.setText(plan1.getString("title"));
-            tvPlan1Desc.setText(plan1.getString("description"));
+            tvPlan1Title.setText(plan1Data.getString("title"));
+            tvPlan1Desc.setText(plan1Data.getString("description"));
 
-            JSONArray steps1 = plan1.getJSONArray("steps");
-            setSteps(steps1, tvPlan1Step1, tvPlan1Step2, tvPlan1Step3);
+            setSteps(plan1Data.getJSONArray("steps"),
+                    tvPlan1Step1, tvPlan1Step2, tvPlan1Step3);
 
-            tvPlan2Title.setText(plan2.getString("title"));
-            tvPlan2Desc.setText(plan2.getString("description"));
+            tvPlan2Title.setText(plan2Data.getString("title"));
+            tvPlan2Desc.setText(plan2Data.getString("description"));
 
-            JSONArray steps2 = plan2.getJSONArray("steps");
-            setSteps(steps2, tvPlan2Step1, tvPlan2Step2, tvPlan2Step3);
+            setSteps(plan2Data.getJSONArray("steps"),
+                    tvPlan2Step1, tvPlan2Step2, tvPlan2Step3);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,16 +203,19 @@ public class TodoAiActivity extends BaseActivity {
     }
 
     private void setSteps(JSONArray steps, TextView s1, TextView s2, TextView s3) {
+
         s1.setText("• " + steps.optString(0, ""));
         s2.setText("• " + steps.optString(1, ""));
         s3.setText("• " + steps.optString(2, ""));
     }
 
-    // 🔥 Send Feedback
-    private void sendFeedback(String planKey) {
+    // ---------------- CHOOSE PLAN (FIXED) ----------------
+    private void choosePlan(JSONObject plan) {
+
         new Thread(() -> {
             try {
-                URL url = new URL("http://192.168.1.12:8080/api/plan/feedback");
+
+                URL url = new URL("http://192.168.1.3:8080/api/plan/choose");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");
@@ -190,22 +224,73 @@ public class TodoAiActivity extends BaseActivity {
 
                 JSONObject body = new JSONObject();
                 body.put("userId", userId);
-                body.put("topic", topic); // 🔥 أهم سطر
-                body.put("chosenPlan", planKey);
+                body.put("topic", topic);
+                body.put("title", plan.getString("title"));
+                body.put("description", plan.getString("description"));
+                body.put("steps", plan.getJSONArray("steps").toString());
 
                 OutputStream os = conn.getOutputStream();
                 os.write(body.toString().getBytes());
                 os.flush();
                 os.close();
 
-                conn.getResponseCode(); // فقط لإرسال الطلب
+                int responseCode = conn.getResponseCode();
 
-                Log.d("FEEDBACK", "Sent");
+                // 🔥 قراءة الرد (important for debugging)
+                Scanner scanner = new Scanner(
+                        responseCode >= 200 && responseCode < 300
+                                ? conn.getInputStream()
+                                : conn.getErrorStream()
+                );
+
+                String response = scanner.useDelimiter("\\A").hasNext()
+                        ? scanner.next()
+                        : "";
+                scanner.close();
+
+                runOnUiThread(() -> {
+
+                    if (responseCode >= 200 && responseCode < 300) {
+
+                        Toast.makeText(this, "Plan selected successfully", Toast.LENGTH_SHORT).show();
+
+                        startActivity(new Intent(this, DoingActivity.class));
+                        finish();
+
+                    } else {
+
+                        Toast.makeText(this,
+                                "Server error: " + response,
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("FEEDBACK", "Error");
+
+                runOnUiThread(() ->
+                        Toast.makeText(this,
+                                "Network error: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show()
+                );
             }
         }).start();
+    }
+
+    // ---------------- SAVE LOCAL (OPTIONAL) ----------------
+    private void saveChosenPlan(JSONObject plan) {
+
+        try {
+            getSharedPreferences("todo_data", MODE_PRIVATE)
+                    .edit()
+                    .putString("plan_title", plan.getString("title"))
+                    .putString("plan_desc", plan.getString("description"))
+                    .putString("plan_steps", plan.getJSONArray("steps").toString())
+                    .putString("topic", topic)
+                    .apply();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

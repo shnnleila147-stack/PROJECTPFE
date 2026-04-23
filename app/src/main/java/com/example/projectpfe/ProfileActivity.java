@@ -63,7 +63,7 @@ public class ProfileActivity extends BaseActivity {
 
     private void loadBigFive(Long userId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.12:8080/")
+                .baseUrl("http://192.168.1.3:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -90,7 +90,7 @@ public class ProfileActivity extends BaseActivity {
 
     private void loadUserProfile(Long userId) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.12:8080/")
+                .baseUrl("http://192.168.1.3:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

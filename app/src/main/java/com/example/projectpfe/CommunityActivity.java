@@ -8,8 +8,8 @@ public class CommunityActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // لما تصممي الواجهة، اكتبي هنا:
-        // setContentView(R.layout.activity_community);
-        // setupBottomNav(2);
-        // setupNotificationBell();
+        setContentView(R.layout.activity_community);
+         setupBottomNav(2);
+        setupNotificationBell();
     }
 }
