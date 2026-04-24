@@ -372,6 +372,7 @@ public class DoingSessionActivity extends AppCompatActivity {
         saveStep();
 
         Intent i = new Intent(this, DoneActivity.class);
+        i.putExtra("planId", planId);
         startActivity(i);
 
         Log.d("DEBUG", "➡️ Navigated to DoneActivity");

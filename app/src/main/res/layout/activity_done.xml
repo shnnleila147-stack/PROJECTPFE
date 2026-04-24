@@ -106,10 +106,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
                 android:text="DAILY SESSION FINALIZED"
                 android:textColor="#666680"
-                android:textSize="11sp"
-                android:letterSpacing="0.1" />
+                android:textSize="11sp" />
 
             <!-- Reflection Portal -->
             <TextView
@@ -126,27 +126,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
+                android:lineSpacingMultiplier="1.4"
                 android:text="Your output today has been recorded. Take a moment to calibrate your trajectory before closing the cycle."
                 android:textColor="#666680"
-                android:textSize="13sp"
-                android:lineSpacingMultiplier="1.4" />
+                android:textSize="13sp" />
 
             <!-- ====== Achievement Reflection ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginBottom="14dp">
+                android:padding="20dp">
 
                 <!-- عنوان القسم -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -168,6 +168,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,12 +176,13 @@
                         android:text="HOW MUCH DID YOU ACHIVE YOU OBJ?"
                         android:textColor="#888899"
                         android:textSize="11sp" />
+
                     <TextView
+                        android:id="@+id/txtAchieveValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="85%"
                         android:textColor="#00E5FF"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -192,15 +194,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:progress="85"
-                    android:thumbTint="#00E5FF"
+                    android:progressBackgroundTint="#1A1A2E"
                     android:progressTint="#00E5FF"
-                    android:progressBackgroundTint="#1A1A2E" />
+                    android:thumbTint="#00E5FF" />
 
                 <!-- LEVEL OF UNDERSTANDING -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -208,55 +210,58 @@
                         android:text="LEVEL OF UNDERSTANDING"
                         android:textColor="#888899"
                         android:textSize="11sp" />
+
                     <TextView
+                        android:id="@+id/txtUnderstandingValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="85%"
                         android:textColor="#00E5FF"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
+                <!-- سؤال نصي -->
                 <SeekBar
                     android:id="@+id/seekUnderstanding"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:progress="85"
-                    android:thumbTint="#00E5FF"
+                    android:progressBackgroundTint="#1A1A2E"
                     android:progressTint="#00E5FF"
-                    android:progressBackgroundTint="#1A1A2E" />
+                    android:thumbTint="#00E5FF" />
 
-                <!-- سؤال نصي -->
                 <EditText
+                    android:id="@+id/editLearning"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/input_field_bg"
                     android:hint="What is the most important thing you learning ?"
-                    android:textColorHint="#333344"
+                    android:paddingHorizontal="14dp"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    android:paddingHorizontal="14dp" />
+                    android:textColorHint="#333344"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <!-- ====== Strategy Evolution ====== -->
+
+            <!-- ====== Effort and Focus ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginBottom="14dp">
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -278,6 +283,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -285,12 +291,13 @@
                         android:text="WAS THE STUDY PLAN EFFECTIVE?"
                         android:textColor="#888899"
                         android:textSize="11sp" />
+
                     <TextView
+                        android:id="@+id/txtPlanValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="62%"
                         android:textColor="#00E5FF"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -302,104 +309,104 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:progress="62"
-                    android:thumbTint="#00E5FF"
+                    android:progressBackgroundTint="#1A1A2E"
                     android:progressTint="#00E5FF"
-                    android:progressBackgroundTint="#1A1A2E" />
+                    android:thumbTint="#00E5FF" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
                     android:text="Which part helped you most ?"
                     android:textColor="#AAAACC"
-                    android:textSize="13sp"
-                    android:layout_marginBottom="12dp" />
+                    android:textSize="13sp" />
 
                 <!-- Tags: Understanding / Practice / Summary -->
+
+                <!-- Self-test tag -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/tagUnderstanding"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Understanding"
-                        android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tab_inactive_bg"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/btn_save" />
+                        android:text="Understanding"
+                        android:textColor="#666680"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tagPractice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Practice"
-                        android:textColor="#666680"
-                        android:textSize="12sp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tab_inactive_bg"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/tab_inactive_bg" />
+                        android:text="Practice"
+                        android:textColor="#666680"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tagSummary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Summary"
-                        android:textColor="#666680"
-                        android:textSize="12sp"
+                        android:background="@drawable/tab_inactive_bg"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="8dp"
-                        android:background="@drawable/tab_inactive_bg" />
+                        android:text="Summary"
+                        android:textColor="#666680"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
-                <!-- Self-test tag -->
                 <TextView
+                    android:id="@+id/tagSelf_test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Self-test"
-                    android:textColor="#666680"
-                    android:textSize="12sp"
+                    android:background="@drawable/tab_inactive_bg"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="8dp"
-                    android:layout_marginBottom="14dp"
-                    android:background="@drawable/tab_inactive_bg" />
+                    android:text="Self-test"
+                    android:textColor="#666680"
+                    android:textSize="12sp" />
 
                 <!-- حقل النص -->
                 <EditText
+                    android:id="@+id/editImprove"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:background="@drawable/input_field_bg"
+                    android:gravity="top"
                     android:hint="How can the workflow be optimized tomorrow?"
-                    android:textColorHint="#333344"
-                    android:textColor="#FFFFFF"
-                    android:textSize="13sp"
+                    android:inputType="textMultiLine"
                     android:paddingHorizontal="14dp"
                     android:paddingTop="12dp"
-                    android:gravity="top"
-                    android:inputType="textMultiLine" />
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#333344"
+                    android:textSize="13sp" />
             </LinearLayout>
 
-            <!-- ====== Effort and Focus ====== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginBottom="14dp">
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -421,6 +428,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -428,12 +436,13 @@
                         android:text="How focused were you during this session?"
                         android:textColor="#AAAACC"
                         android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/txtFocusValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="92%"
                         android:textColor="#00E5FF"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -445,15 +454,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:progress="92"
-                    android:thumbTint="#00E5FF"
+                    android:progressBackgroundTint="#1A1A2E"
                     android:progressTint="#00E5FF"
-                    android:progressBackgroundTint="#1A1A2E" />
+                    android:thumbTint="#00E5FF" />
 
                 <!-- Effort level -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -461,12 +470,13 @@
                         android:text="Effort level"
                         android:textColor="#AAAACC"
                         android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:text="40%"
+                        android:id="@+id/txtEffortValue"
                         android:textColor="#00E5FF"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -478,10 +488,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:progress="40"
-                    android:thumbTint="#00E5FF"
+                    android:progressBackgroundTint="#1A1A2E"
                     android:progressTint="#00E5FF"
-                    android:progressBackgroundTint="#1A1A2E" />
+                    android:thumbTint="#00E5FF" />
 
                 <!-- Did you stay consistent? + Y/N -->
                 <RelativeLayout
@@ -508,24 +517,24 @@
                             android:id="@+id/btnYes"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:text="Y"
-                            android:textColor="#000000"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/btn_save" />
+                            android:background="@drawable/tab_inactive_bg"
+                            android:gravity="center"
+                            android:text="Y"
+                            android:textColor="#666680"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/btnNo"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:background="@drawable/tab_inactive_bg"
+                            android:gravity="center"
                             android:text="N"
                             android:textColor="#666680"
                             android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:gravity="center"
-                            android:background="@drawable/tab_inactive_bg" />
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
@@ -534,17 +543,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
-                android:padding="20dp"
-                android:layout_marginBottom="20dp">
+                android:padding="20dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="20dp"
@@ -565,79 +574,84 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
                     android:text="How are you feeling right now?"
                     android:textColor="#AAAACC"
-                    android:textSize="13sp"
-                    android:layout_marginBottom="12dp" />
+                    android:textSize="13sp" />
 
                 <!-- Tags الصف الأول: EXHAUSTED / Motivated -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
 
                     <TextView
+                         android:id="@+id/tagExhausted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tab_inactive_bg"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp"
                         android:text="EXHAUSTED"
                         android:textColor="#666680"
-                        android:textSize="12sp"
-                        android:paddingHorizontal="14dp"
-                        android:paddingVertical="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/tab_inactive_bg" />
+                        android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tagMotivated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Motivated"
-                        android:textColor="#000000"
-                        android:textSize="12sp"
+                        android:background="@drawable/tab_inactive_bg"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="8dp"
-                        android:background="@drawable/btn_save" />
+                        android:text="Motivated"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <!-- Tags الصف الثاني: FRUSTRATED / Calm -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="14dp">
+                    android:layout_marginBottom="14dp"
+                    android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tagFrustrated"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/tab_inactive_bg"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="8dp"
                         android:text="FRUSTRATED"
                         android:textColor="#666680"
-                        android:textSize="12sp"
-                        android:paddingHorizontal="14dp"
-                        android:paddingVertical="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/tab_inactive_bg" />
+                        android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tagCalm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Calm"
-                        android:textColor="#666680"
-                        android:textSize="12sp"
+                        android:background="@drawable/tab_inactive_bg"
                         android:paddingHorizontal="14dp"
                         android:paddingVertical="8dp"
-                        android:background="@drawable/tab_inactive_bg" />
+                        android:text="Calm"
+                        android:textColor="#666680"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <!-- حقل نصي -->
                 <EditText
+                    android:id="@+id/editMotivation"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:background="@drawable/input_field_bg"
                     android:hint="What helped you be motivated"
-                    android:textColorHint="#333344"
+                    android:paddingHorizontal="14dp"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    android:paddingHorizontal="14dp" />
+                    android:textColorHint="#333344"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <!-- زر COMPLETE CHECK-IN -->
@@ -646,11 +660,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="@drawable/btn_save"
+                android:letterSpacing="0.1"
                 android:text="COMPLETE CHECK-IN  🚀"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.1"
                 app:backgroundTint="@null" />
 
         </LinearLayout>
