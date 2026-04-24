@@ -138,7 +138,7 @@ public class TodoAiActivity extends BaseActivity {
         new Thread(() -> {
             try {
 
-                URL url = new URL("http://192.168.1.3:8080/api/plan/generate");
+                URL url = new URL("http://192.168.1.12:8080/api/plan/generate");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");
@@ -215,7 +215,7 @@ public class TodoAiActivity extends BaseActivity {
         new Thread(() -> {
             try {
 
-                URL url = new URL("http://192.168.1.3:8080/api/plan/choose");
+                URL url = new URL("http://192.168.1.12:8080/api/plan/choose");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");

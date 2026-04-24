@@ -63,7 +63,7 @@ public class DoingActivity extends BaseActivity {
         new Thread(() -> {
             try {
 
-                URL url = new URL("http://192.168.1.3:8080/api/plan/" + userId);
+                URL url = new URL("http://192.168.1.12:8080/api/plan/" + userId);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 
@@ -87,20 +87,15 @@ public class DoingActivity extends BaseActivity {
 
     // ================= DISPLAY =================
     private void displayPlans(String response) {
-
         try {
-
             JSONArray plans = new JSONArray(response);
             containerTasks.removeAllViews();
-
             for (int i = 0; i < plans.length(); i++) {
-
                 JSONObject plan = plans.getJSONObject(i);
 
                 long planId = plan.getLong("id");
                 String title = plan.optString("title", "");
 
-                // 🔥 FIX: steps is STRING not JSONArray
                 JSONArray steps;
                 try {
                     steps = new JSONArray(plan.getString("steps"));
@@ -108,13 +103,9 @@ public class DoingActivity extends BaseActivity {
                     steps = new JSONArray();
                 }
 
-                JSONArray doneSteps = plan.optJSONArray("doneSteps");
-                if (doneSteps == null) doneSteps = new JSONArray();
-
                 View view = getLayoutInflater().inflate(R.layout.item_plan, null);
 
                 TextView tvTitle = view.findViewById(R.id.title);
-
                 TextView step1 = view.findViewById(R.id.step1);
                 TextView step2 = view.findViewById(R.id.step2);
                 TextView step3 = view.findViewById(R.id.step3);
@@ -124,29 +115,50 @@ public class DoingActivity extends BaseActivity {
                 ImageView icon3 = view.findViewById(R.id.point3);
 
                 TextView tvPercent = view.findViewById(R.id.progressText);
-                CircularProgressView progress = view.findViewById(R.id.progress);
+                CircularProgressView progressView = view.findViewById(R.id.progress);
 
                 tvTitle.setText(title);
 
-                // ================= STEPS =================
                 step1.setText(steps.optString(0, ""));
                 step2.setText(steps.optString(1, ""));
                 step3.setText(steps.optString(2, ""));
 
-                // ================= DONE =================
-                boolean d1 = doneSteps.optBoolean(0, false);
-                boolean d2 = doneSteps.optBoolean(1, false);
-                boolean d3 = doneSteps.optBoolean(2, false);
+                // 🔥 نجيب progress من API
+                new Thread(() -> {
+                    try {
+                        URL url = new URL("http://192.168.1.12:8080/api/step/" + userId + "/" + planId);
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                applyStep(step1, icon1, d1);
-                applyStep(step2, icon2, d2);
-                applyStep(step3, icon3, d3);
+                        Scanner sc = new Scanner(conn.getInputStream());
+                        String res = sc.useDelimiter("\\A").next();
 
-                int doneCount = (d1 ? 1 : 0) + (d2 ? 1 : 0) + (d3 ? 1 : 0);
-                int percent = (doneCount * 100) / 3;
+                        JSONArray arr = new JSONArray(res);
 
-                progress.setProgress(percent);
-                tvPercent.setText(percent + "%");
+                        int[] progress = {0, 0, 0};
+
+                        for (int j = 0; j < arr.length(); j++) {
+                            JSONObject obj = arr.getJSONObject(j);
+                            int index = obj.getInt("stepIndex");
+                            progress[index] = obj.getInt("progress");
+                        }
+
+                        runOnUiThread(() -> {
+
+                            applyStep(step1, icon1, progress[0] == 100);
+                            applyStep(step2, icon2, progress[1] == 100);
+                            applyStep(step3, icon3, progress[2] == 100);
+
+                            int total = progress[0] + progress[1] + progress[2];
+                            int percent = total / 3;
+
+                            progressView.setProgress(percent);
+                            tvPercent.setText(percent + "%");
+                        });
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
 
                 view.setOnClickListener(v -> {
                     Intent intent = new Intent(this, DoingSessionActivity.class);
@@ -161,7 +173,9 @@ public class DoingActivity extends BaseActivity {
             e.printStackTrace();
             Toast.makeText(this, "Parse error", Toast.LENGTH_LONG).show();
         }
+
     }
+
 
     private void applyStep(TextView text, ImageView dot, boolean done) {
 

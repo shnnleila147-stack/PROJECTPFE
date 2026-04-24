@@ -91,7 +91,7 @@ public class DoingSessionActivity extends AppCompatActivity {
 
                 Log.d("DEBUG", "📡 Loading Plan...");
 
-                URL url = new URL("http://192.168.1.3:8080/api/plan/" + userId);
+                URL url = new URL("http://192.168.1.12:8080/api/plan/" + userId);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 Scanner sc = new Scanner(conn.getInputStream());
@@ -100,7 +100,21 @@ public class DoingSessionActivity extends AppCompatActivity {
                 Log.d("DEBUG", "Plan Response = " + res);
 
                 JSONArray arr = new JSONArray(res);
-                JSONObject plan = arr.getJSONObject(0);
+                JSONObject plan = null;
+
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject p = arr.getJSONObject(i);
+                    if (p.getLong("id") == planId) {
+                        plan = p;
+                        break;
+                    }
+                }
+
+                if (plan == null) {
+                    Log.e("ERROR", "❌ Plan not found!");
+                    return;
+                }
+
 
                 stepsArray = new JSONArray(plan.getString("steps"));
 
@@ -125,7 +139,7 @@ public class DoingSessionActivity extends AppCompatActivity {
 
             Log.d("DEBUG", "📡 Loading Todo Time...");
 
-            URL url = new URL("http://192.168.1.3:8080/api/todo/" + userId);
+            URL url = new URL("http://192.168.1.12:8080/api/todo/" + userId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             Scanner sc = new Scanner(conn.getInputStream());
@@ -176,7 +190,7 @@ public class DoingSessionActivity extends AppCompatActivity {
 
                 Log.d("DEBUG", "📡 Loading Progress...");
 
-                URL url = new URL("http://192.168.1.3:8080/api/step/" + userId + "/" + planId);
+                URL url = new URL("http://192.168.1.12:8080/api/step/" + userId + "/" + planId);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 Scanner sc = new Scanner(conn.getInputStream());
@@ -304,7 +318,7 @@ public class DoingSessionActivity extends AppCompatActivity {
 
                 Log.d("DEBUG", "💾 Saving step START");
 
-                URL url = new URL("http://192.168.1.3:8080/api/step/save");
+                URL url = new URL("http://192.168.1.12:8080/api/step/save");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestMethod("POST");
