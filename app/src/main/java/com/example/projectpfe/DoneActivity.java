@@ -237,7 +237,7 @@ public class DoneActivity extends BaseActivity {
                 body.put("learningNote", inputLearning.getText().toString());
                 body.put("improvementNote", inputImprove.getText().toString());
                 body.put("motivationNote", inputMotivation.getText().toString());
-                body.put("emotion", emotion);
+                body.put("emotion", getEmotionValue(emotion));
                 Log.d("DONE_DEBUG", "📤 JSON = " + body.toString());
 
                 OutputStream os = conn.getOutputStream();
@@ -323,7 +323,8 @@ public class DoneActivity extends BaseActivity {
                     Log.d("DONE_DEBUG", "consistent = " + isConsistent);
 
                     // ================= EMOTION =================
-                    emotion = obj.optString("emotion", "Motivated");
+                    int emotionValue = obj.optInt("emotion", 3);
+                    emotion = setEmotionValue(emotionValue);
 
                     if (emotion.equals("Exhausted")) {
                         selectEmotion(tagExhausted, tagMotivated, tagFrustrated, tagCalm);
@@ -345,5 +346,22 @@ public class DoneActivity extends BaseActivity {
 
 
     }
-
+    private int getEmotionValue(String emotion) {
+        switch (emotion) {
+            case "Exhausted": return 1;
+            case "Frustrated": return 2;
+            case "Motivated": return 3;
+            case "Calm": return 4;
+            default: return 3;
+        }
+    }
+    private String setEmotionValue(int value) {
+        switch (value) {
+            case 1: return "Exhausted";
+            case 2: return "Frustrated";
+            case 3: return "Motivated";
+            case 4: return "Calm";
+            default: return "Motivated";
+        }
+    }
 }
