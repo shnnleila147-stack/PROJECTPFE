@@ -76,14 +76,6 @@
                 android:padding="20dp"
                 android:gravity="center_vertical">
 
-                <ImageView
-                    android:id="@+id/ivAvatar"
-                    android:layout_width="79dp"
-                    android:layout_height="72dp"
-                    android:clipToOutline="true"
-                    android:padding="2dp"
-                    android:scaleType="centerCrop"/>
-
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -108,18 +100,12 @@
                         android:gravity="center_vertical"
                         android:layout_marginTop="6dp">
 
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:src="@drawable/ic_clock"
-                            app:tint="#666680" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="6dp"
                             android:text="18 Years"
-                            android:textColor="#666680"
+                            android:textColor="#FFFFFF"
                             android:textSize="13sp" />
                     </LinearLayout>
 
@@ -199,12 +185,30 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="20dp">
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:id="@+id/tvConscientiousnessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="CONSCIENTIOUSNESS" android:textColor="#888899" android:textSize="11sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- الاسم (ثابت) -->
+                        <TextView
+                            android:id="@+id/tvConscientiousnessLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CONSCIENTIOUSNESS"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+
+                        <!-- النسبة (ديناميكية) -->
+                        <TextView
+                            android:id="@+id/tvConscientiousnessValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
+
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressConscientiousness"
@@ -220,12 +224,30 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:id="@+id/tvAgreeablenessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="AGREEABLENESS" android:textColor="#888899" android:textSize="11sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- الاسم (ثابت) -->
+                        <TextView
+                            android:id="@+id/tvAgreeablenessLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AGREEABLENESS"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+
+                        <!-- النسبة (ديناميكية) -->
+                        <TextView
+                            android:id="@+id/tvAgreeablenessValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
+
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressAgreeableness"
@@ -241,12 +263,30 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:id="@+id/tvExtraversionValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="EXTRAVERSION" android:textColor="#888899" android:textSize="11sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- الاسم (ثابت) -->
+                        <TextView
+                            android:id="@+id/tvExtraversionLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EXTRAVERSION"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+
+                        <!-- النسبة (ديناميكية) -->
+                        <TextView
+                            android:id="@+id/tvExtraversionValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
+
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressExtraversion"
@@ -262,12 +302,29 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView android:id="@+id/tvNeuroticismValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="NEUROTICISM" android:textColor="#888899" android:textSize="11sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- الاسم (ثابت) -->
+                        <TextView
+                            android:id="@+id/tvNeuroticismLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NEUROTICISM"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+
+                        <!-- النسبة (ديناميكية) -->
+                        <TextView
+                            android:id="@+id/tvNeuroticismValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-                            android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressNeuroticism"
@@ -283,17 +340,29 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="16dp">
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-                        <TextView    android:id="@+id/tvOpennessValue" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:text="OPENNESS" android:textColor="#888899" android:textSize="11sp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <!-- الاسم (ثابت) -->
                         <TextView
+                            android:id="@+id/tvOpennessLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="OPENNESS"
+                            android:textColor="#888899"
+                            android:textSize="11sp" />
+
+                        <!-- النسبة (ديناميكية) -->
+                        <TextView
+                            android:id="@+id/tvOpennessValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
+
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressOpenness"
@@ -335,9 +404,9 @@
                     android:orientation="vertical"
                     android:padding="16dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="92%"
+                        android:src="@drawable/ic_target" app:tint="#00E5FF"/>
+                    <TextView android:id="@+id/tvAttemptRate" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="ATTEMPT RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -355,8 +424,8 @@
                     android:padding="16dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="88%"
+                    <TextView android:id="@+id/tvSuccessRate" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="SUCCESS RATE" android:textColor="#666680" android:textSize="10sp"/>
@@ -372,9 +441,9 @@
                     android:orientation="vertical"
                     android:padding="16dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
-                        android:src="@drawable/ic_sparkle" app:tint="#00E5FF"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="75%"
+                        android:src="@drawable/ic_target" app:tint="#00E5FF"/>
+                    <TextView android:id="@+id/tvPersistence" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="PERSISTENCE TIME" android:textColor="#666680" android:textSize="10sp"/>
@@ -390,8 +459,8 @@
                     android:padding="16dp">
                     <ImageView android:layout_width="28dp" android:layout_height="28dp"
                         android:src="@drawable/ic_target" app:tint="#00E5FF"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp" android:text="65%"
+                    <TextView android:id="@+id/tvDifficulty" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="DIFFICULTY HANDLING" android:textColor="#666680" android:textSize="10sp"/>

@@ -13,4 +13,6 @@ public interface ProfileApi {
     Call<Map<String, Integer>> getBigFive(@Path("userId") Long userId);
     @GET("api/profile/{userId}")
     Call<User> getUser(@Path("userId") Long userId);
+    @GET("api/profile/{userId}/behavior")
+    Call<Map<String, Integer>> getBehavior(@Path("userId") Long userId);
 }
