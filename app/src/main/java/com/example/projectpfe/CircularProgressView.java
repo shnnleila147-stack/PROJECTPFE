@@ -3,10 +3,8 @@ package com.example.projectpfe;
 import android.content.Context;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.SweepGradient;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -19,7 +17,7 @@ public class CircularProgressView extends View {
     private RectF rectF;
     private RectF glowRectF;
 
-    private int progress = 75;
+    private int progress ;
     private int max = 100;
 
     public CircularProgressView(Context context) {

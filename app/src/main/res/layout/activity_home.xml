@@ -87,7 +87,7 @@
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RAYANE"
+
                     android:textColor="#00E5FF"
                     android:textSize="32sp"
                     android:textStyle="bold" />
@@ -117,7 +117,7 @@
                         android:id="@+id/tvProgressPercent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="75%"
+
                         android:textColor="#FFFFFF"
                         android:textSize="40sp"
                         android:textStyle="bold" />
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="4.2 hrs"
+
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -184,112 +184,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="12 Days"
+
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- ===== بطاقة Today's Focus ===== -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/bg_card_rounded"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Today's Focus"
-                        android:textColor="#666680"
-                        android:textSize="12sp" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_expand"
-                        app:tint="#666680" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/tvFocusSubject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Advanced\nMathematics"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <!-- ⏰ Target: 2 hours intensive -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_clock"
-                        app:tint="#9999AA" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="2 hours intensive"
-                        android:textColor="#9999AA"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <!-- 📚 3 modules remaining -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/ic_book"
-                        app:tint="#9999AA" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:text="3 modules remaining"
-                        android:textColor="#9999AA"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btnStartSession"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_start_session_btn"
-                    android:text="START SESSION"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.1"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
-
-            <!-- ===== Goals Overview ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -298,7 +198,6 @@
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
                 android:padding="20dp">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -313,59 +212,35 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp">
 
-                    <ImageView
-                        android:id="@+id/goalIcon1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_card_dark_rounded"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_science"
-                        app:tint="#00E5FF" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/goalIcon1"
-                        android:layout_toStartOf="@+id/tvBadge1"
+
                         android:layout_marginStart="12dp"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/goal1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Master Quantum\nMechanics"
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
 
                         <ProgressBar
                             style="?android:attr/progressBarStyleHorizontal"
+                            android:id="@+id/progressGoal1"
                             android:layout_width="match_parent"
                             android:layout_height="4dp"
                             android:layout_marginTop="8dp"
-                            android:progress="70"
+
                             android:progressDrawable="@drawable/bg_goal_progress" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="JANUARY 15, 2025"
-                            android:textColor="#444455"
-                            android:textSize="10sp" />
+
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvBadge1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_badge_progress"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:text="IN PROGRESS"
-                        android:textColor="#00E5FF"
-                        android:textSize="9sp" />
+
                 </RelativeLayout>
 
                 <!-- خط فاصل -->
@@ -373,66 +248,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="12dp"
-                    android:background="#1A1A2E" />
+                    android:background="#666680" />
 
                 <!-- هدف 2: Math -->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/goalIcon2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_card_dark_rounded"
-                        android:padding="8dp"
-                        android:src="@drawable/ic_math"
-                        app:tint="#666680" />
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/goalIcon2"
-                        android:layout_toStartOf="@+id/tvBadge2"
+
                         android:layout_marginStart="12dp"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/goal2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Math"
+
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
 
                         <ProgressBar
                             style="?android:attr/progressBarStyleHorizontal"
+                          android:id="@+id/progressGoal2"
                             android:layout_width="match_parent"
                             android:layout_height="4dp"
                             android:layout_marginTop="8dp"
-                            android:progress="10"
+
                             android:progressDrawable="@drawable/bg_goal_progress" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:text="FEBRUARY 15, 2025"
+
                             android:textColor="#444455"
                             android:textSize="10sp" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvBadge2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bg_badge_upcoming"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:text="UPCOMING"
-                        android:textColor="#FF9800"
-                        android:textSize="9sp" />
                 </RelativeLayout>
 
                 <!-- VIEW ALL -->
@@ -442,6 +298,7 @@
                     android:layout_marginTop="16dp">
 
                     <TextView
+                        android:id="@+id/tvViewAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VIEW ALL"
@@ -460,34 +317,7 @@
             </LinearLayout>
 
             <!-- ===== PRO TIPS ===== -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="80dp"
-                android:background="@drawable/bg_pro_tips_card"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PRO TIPS"
-                    android:textColor="#00E5FF"
-                    android:textSize="10sp"
-                    android:letterSpacing="0.15" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Deep Work Strategies"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
@@ -544,6 +374,8 @@
             android:layout_weight="1"
             android:gravity="center">
             <ImageView
+
+                android:id="@+id/tvGoal2"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_chart"
