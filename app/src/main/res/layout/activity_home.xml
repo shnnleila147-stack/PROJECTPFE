@@ -47,14 +47,28 @@
                     android:letterSpacing="0.2"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/ivNotification"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="24dp"
-                    android:src="@drawable/ic_notification"
-                    app:tint="#00E5FF" />
+                    android:layout_marginEnd="24dp">
+
+                    <ImageView
+                        android:id="@+id/ivNotification"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_notification"
+                        app:tint="#00E5FF" />
+
+                    <View
+                        android:id="@+id/notificationBadge"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="end|top"
+                        android:background="@drawable/bg_red_circle"
+                        android:visibility="gone" />
+
+                </FrameLayout>
             </RelativeLayout>
 
             <!-- ===== WORKSPACE + الاسم ===== -->
@@ -316,7 +330,6 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <!-- ===== PRO TIPS ===== -->
 
 
         </LinearLayout>

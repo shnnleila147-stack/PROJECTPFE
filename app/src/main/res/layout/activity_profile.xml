@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0A0A0F">
-
-    <!-- ===== HEADER ثابت في الأعلى ===== -->
-
-    <!-- المحتوى القابل للتمرير -->
-
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -20,8 +15,6 @@
         android:paddingHorizontal="24dp"
         android:paddingTop="48dp"
         android:paddingBottom="16dp">
-
-        <!-- أيقونة القائمة (3 خطوط) يسار -->
         <ImageView
             android:id="@+id/ivMoreOptions"
             android:layout_width="24dp"
@@ -29,8 +22,6 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="37dp"
             android:src="@drawable/ic_menu" />
-
-        <!-- عنوان Profile في المنتصف -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,33 +30,40 @@
             android:textColor="#00E5FF"
             android:textSize="25sp"
             android:textStyle="bold" />
-
-        <!-- أيقونة الجرس يمين -->
-        <ImageView
-            android:id="@+id/ivNotification"
-            android:layout_width="29dp"
-            android:layout_height="29dp"
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:src="@drawable/ic_notification"
-            app:tint="#00E5FF" />
+            android:layout_marginEnd="21dp">
 
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_notification"
+                app:tint="#00E5FF" />
+
+            <View
+                android:id="@+id/notificationBadge"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="end|top"
+                android:background="@drawable/bg_red_circle"
+                android:visibility="gone" />
+
+        </FrameLayout>
     </RelativeLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/topBar"
         android:layout_above="@+id/bottomNavBar"
         android:scrollbars="none">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="20dp">
-
-            <!-- ===== بطاقة معلومات المستخدم ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,15 +73,12 @@
                 android:orientation="horizontal"
                 android:padding="20dp"
                 android:gravity="center_vertical">
-
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="16dp"
                     android:orientation="vertical">
-
                     <TextView
                         android:id="@+id/tvProfileName"
                         android:layout_width="wrap_content"
@@ -92,14 +87,12 @@
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold" />
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginTop="6dp">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -108,7 +101,6 @@
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,7 +108,6 @@
                         android:gravity="center_vertical"
                         android:layout_marginTop="4dp">
                         <ImageView
-
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:src="@drawable/ic_sparkle"
@@ -132,8 +123,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <!-- ===== ASSESSMENT - Personality ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,16 +131,13 @@
                 android:background="@drawable/bg_card_rounded"
                 android:orientation="vertical"
                 android:padding="20dp">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -159,7 +145,6 @@
                             android:textColor="#00E5FF"
                             android:textSize="10sp"
                             android:letterSpacing="0.2" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -168,7 +153,6 @@
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
-
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
@@ -177,10 +161,7 @@
                         android:src="@drawable/ic_chart"
                         app:tint="#666680" />
                 </RelativeLayout>
-
-                <!-- CONSCIENTIOUSNESS 88% -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -188,8 +169,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <!-- الاسم (ثابت) -->
                         <TextView
                             android:id="@+id/tvConscientiousnessLabel"
                             android:layout_width="wrap_content"
@@ -197,18 +176,14 @@
                             android:text="CONSCIENTIOUSNESS"
                             android:textColor="#888899"
                             android:textSize="11sp" />
-
-                        <!-- النسبة (ديناميكية) -->
                         <TextView
                             android:id="@+id/tvConscientiousnessValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressConscientiousness"
@@ -216,10 +191,7 @@
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
-
-                <!-- AGREEABLENESS 64% -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -227,8 +199,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <!-- الاسم (ثابت) -->
                         <TextView
                             android:id="@+id/tvAgreeablenessLabel"
                             android:layout_width="wrap_content"
@@ -236,18 +206,14 @@
                             android:text="AGREEABLENESS"
                             android:textColor="#888899"
                             android:textSize="11sp" />
-
-                        <!-- النسبة (ديناميكية) -->
                         <TextView
                             android:id="@+id/tvAgreeablenessValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressAgreeableness"
@@ -255,10 +221,7 @@
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
-
-                <!-- EXTRAVERSION 72% -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -266,8 +229,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <!-- الاسم (ثابت) -->
                         <TextView
                             android:id="@+id/tvExtraversionLabel"
                             android:layout_width="wrap_content"
@@ -275,18 +236,14 @@
                             android:text="EXTRAVERSION"
                             android:textColor="#888899"
                             android:textSize="11sp" />
-
-                        <!-- النسبة (ديناميكية) -->
                         <TextView
                             android:id="@+id/tvExtraversionValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
-
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressExtraversion"
@@ -294,10 +251,7 @@
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
-
-                <!-- NEUROTICISM 41% -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -305,8 +259,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <!-- الاسم (ثابت) -->
                         <TextView
                             android:id="@+id/tvNeuroticismLabel"
                             android:layout_width="wrap_content"
@@ -314,8 +266,6 @@
                             android:text="NEUROTICISM"
                             android:textColor="#888899"
                             android:textSize="11sp" />
-
-                        <!-- النسبة (ديناميكية) -->
                         <TextView
                             android:id="@+id/tvNeuroticismValue"
                             android:layout_width="wrap_content"
@@ -324,7 +274,6 @@
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressNeuroticism"
@@ -332,10 +281,7 @@
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
-
-                <!-- OPENNESS 95% -->
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -343,8 +289,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <!-- الاسم (ثابت) -->
                         <TextView
                             android:id="@+id/tvOpennessLabel"
                             android:layout_width="wrap_content"
@@ -352,8 +296,6 @@
                             android:text="OPENNESS"
                             android:textColor="#888899"
                             android:textSize="11sp" />
-
-                        <!-- النسبة (ديناميكية) -->
                         <TextView
                             android:id="@+id/tvOpennessValue"
                             android:layout_width="wrap_content"
@@ -362,7 +304,6 @@
                             android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             android:textStyle="bold" />
-
                     </RelativeLayout>
                     <ProgressBar style="?android:attr/progressBarStyleHorizontal"
                         android:id="@+id/progressOpenness"
@@ -370,10 +311,7 @@
                         android:layout_marginTop="6dp"
                         android:progressDrawable="@drawable/bg_goal_progress"/>
                 </LinearLayout>
-
             </LinearLayout>
-
-            <!-- ===== How you behave? ===== -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -383,8 +321,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <!-- شبكة 2x2 -->
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -392,8 +328,6 @@
                 android:layout_marginTop="12dp"
                 android:columnCount="2"
                 android:rowCount="2">
-
-                <!-- بطاقة 1: ATTEMPT RATE 92% -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -410,10 +344,7 @@
                         android:textColor="#FFFFFF" android:textSize="26sp" android:textStyle="bold"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="ATTEMPT RATE" android:textColor="#666680" android:textSize="10sp"/>
-
                 </LinearLayout>
-
-                <!-- بطاقة 2: SUCCESS RATE 88% -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -430,8 +361,6 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="SUCCESS RATE" android:textColor="#666680" android:textSize="10sp"/>
                 </LinearLayout>
-
-                <!-- بطاقة 3: PERSISTENCE TIME 75% -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -448,8 +377,6 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="PERSISTENCE TIME" android:textColor="#666680" android:textSize="10sp"/>
                 </LinearLayout>
-
-                <!-- بطاقة 4: DIFFICULTY HANDLING 65% -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -465,13 +392,9 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:text="DIFFICULTY HANDLING" android:textColor="#666680" android:textSize="10sp"/>
                 </LinearLayout>
-
             </GridLayout>
-
         </LinearLayout>
     </ScrollView>
-
-    <!-- ===== Bottom Navigation Bar ===== -->
     <LinearLayout
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
@@ -481,32 +404,26 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:paddingHorizontal="8dp">
-
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:gravity="center">
             <ImageView android:layout_width="24dp" android:layout_height="24dp"
                 android:src="@drawable/ic_home" app:tint="#666680"/>
         </LinearLayout>
-
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:gravity="center">
             <ImageView android:layout_width="24dp" android:layout_height="24dp"
                 android:src="@drawable/ic_chart" app:tint="#666680"/>
         </LinearLayout>
-
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:gravity="center">
             <ImageView android:layout_width="24dp" android:layout_height="24dp"
                 android:src="@drawable/ic_person" app:tint="#666680"/>
         </LinearLayout>
-
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:gravity="center">
             <ImageView android:layout_width="24dp" android:layout_height="24dp"
                 android:src="@drawable/ic_modules" app:tint="#666680"/>
         </LinearLayout>
-
-        <!-- Profile مفعّل بالسيان -->
         <LinearLayout android:layout_width="0dp" android:layout_height="match_parent"
             android:layout_weight="1" android:gravity="center" android:orientation="vertical">
             <ImageView android:layout_width="24dp" android:layout_height="24dp"
@@ -514,7 +431,5 @@
             <View android:layout_width="4dp" android:layout_height="4dp"
                 android:layout_marginTop="4dp" android:background="#00E5FF"/>
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>

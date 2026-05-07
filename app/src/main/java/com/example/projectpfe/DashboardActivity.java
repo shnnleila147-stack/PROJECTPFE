@@ -173,4 +173,9 @@ public class DashboardActivity extends BaseActivity {
             Log.e(TAG, "❌ UI ERROR", e);
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateNotificationBadge();
+    }
 }

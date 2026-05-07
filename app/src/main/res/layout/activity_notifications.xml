@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0A0A0F">
-
-    <!-- ===== HEADER ===== -->
-
-    <!-- ===== المحتوى ===== -->
-
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -17,51 +12,31 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="43dp"
         android:background="#0A0A0F"
-        android:paddingHorizontal="24dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="48dp"
         android:paddingBottom="16dp">
-
-        <!-- أيقونة القائمة -->
-
-        <!-- عنوان NOTIFICATIONS -->
-
-        <!-- أيقونة الإعدادات -->
-
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="26dp"
             android:src="@drawable/ic_menu" />
-
         <TextView
             android:layout_width="265dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/imageView"
-            android:layout_marginEnd="7dp"
             android:letterSpacing="0.15"
+            android:paddingHorizontal="50dp"
             android:text="NOTIFICATIONS"
             android:textColor="#00E5FF"
             android:textSize="17sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="21dp"
-            android:src="@drawable/ic_target"
-            app:tint="#00E5FF" />
     </RelativeLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/topBar"
         android:layout_above="@+id/bottomNavBar"
         android:scrollbars="none">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,6 +68,7 @@
 
             <!-- ====== بطاقة 1: MISSION PENDING ====== -->
             <LinearLayout
+                android:id="@+id/cardMission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card_rounded"
@@ -126,24 +102,14 @@
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <!-- IMMEDIATE badge -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="IMMEDIATE"
-                        android:textColor="#00E5FF"
-                        android:textSize="9sp"
-                        android:textStyle="bold"
-                        android:paddingHorizontal="8dp"
-                        android:paddingVertical="4dp"
-                        android:background="@drawable/tab_active_bg" />
+
                 </LinearLayout>
 
                 <!-- النص -->
                 <TextView
+                    android:id="@+id/tvMissionMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="The mission is not yet complete... but it awaits you. Return to the dashboard to finalize phase 2."
                     android:textColor="#888899"
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.4"
@@ -185,6 +151,7 @@
 
             <!-- ====== بطاقة 2: DEEP FOCUS ====== -->
             <LinearLayout
+                android:id="@+id/cardFocus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card_rounded"
@@ -221,20 +188,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3m ago"
                         android:textColor="#444455"
                         android:textSize="11sp" />
                 </LinearLayout>
 
                 <!-- النص -->
                 <TextView
+                    android:id="@+id/tvFocusMessage"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
                     android:layout_marginBottom="16dp"
                     android:lineSpacingMultiplier="1.4"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp">
-                    <![CDATA[Your scheduled deep focus session is starting in <font color="#00E5FF"><b>3 minutes</b></font>. Environmental optimization recommended.]]>
                 </TextView>
 
                 <!-- زر INITIALIZE PROTOCOL -->
@@ -253,6 +219,7 @@
 
             <!-- ====== بطاقة 3: WEEKLY EFFICIENCY ====== -->
             <LinearLayout
+                android:id="@+id/cardWeekly"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card_rounded"
@@ -288,23 +255,23 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2h ago"
                         android:textColor="#444455"
                         android:textSize="11sp" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvWeeklyMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#888899"
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.4">
-                    <![CDATA[Efficiency score increased by <font color="#00E5FF"><b>+12%</b></font> compared to last cycle. Consistency is your greatest asset.]]>
                 </TextView>
             </LinearLayout>
 
             <!-- ====== بطاقة 4: STREAK SECURED ====== -->
             <LinearLayout
+                android:id="@+id/cardStreak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_card_rounded"
@@ -339,19 +306,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5h ago"
                         android:textColor="#444455"
                         android:textSize="11sp" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvStreakMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#888899"
                     android:textSize="13sp"
                     android:lineSpacingMultiplier="1.4">
-                    <![CDATA[Daily streak maintained: <font color="#FFFFFF"><b>14 DAYS</b></font>. Do not let the flame flicker.]]>
-                </TextView>
+                  </TextView>
             </LinearLayout>
 
         </LinearLayout>

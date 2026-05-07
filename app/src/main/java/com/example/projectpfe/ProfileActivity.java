@@ -42,14 +42,11 @@ public class ProfileActivity extends BaseActivity {
 
         setupNotificationBell();
         setupBottomNav(4);
-
         initViews();
         initRetrofit();
         loadUser();
     }
-
     private void initViews() {
-
         // Big Five
         progressOpenness = findViewById(R.id.progressOpenness);
         progressConscientiousness = findViewById(R.id.progressConscientiousness);
@@ -241,5 +238,10 @@ public class ProfileActivity extends BaseActivity {
         progressBar.setProgress(value);
 
         textView.setText(value + "%");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateNotificationBadge();
     }
 }
